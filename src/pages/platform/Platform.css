@@ -46,7 +46,7 @@ box-shadow: 0px -1px 10px -5px rgba(0,0,0,0.75);
 .platform-canvas .platform-draw{
     width: 78%;
     height: 100%;
-    background-color: #FCFDFD;
+    background-image: url('../../assets/bg/bg.png');
     border-top: 2px solid #F6F8F8
     ;
 }
