@@ -1,0 +1,12 @@
+.code-box-shape{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    background: radial-gradient(at top left, #0F0 20%, #040);
+    -ms-border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -o-border-radius: 150px;
+    border-radius: 150px;
+    margin: 0px auto;
+}
