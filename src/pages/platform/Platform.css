@@ -23,7 +23,17 @@ box-shadow: 0px -1px 10px -5px rgba(0,0,0,0.75);
     width: 78%;
     height: 100%;
     background-color: #FFFFFF;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
 
+}
+.button-group{
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }
 .platform-header .platform-inputs{
     width: 15%;

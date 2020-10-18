@@ -1,0 +1,18 @@
+.container-form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.item-form{
+    width: 90%;
+}
+.item-form input{
+    width: 90%;   
+}
+.item-form input:focus{
+    outline: none !important;
+    border:1px solid #50E3C4;
+    box-shadow: 0 0 5px #50E3C4;   
+}

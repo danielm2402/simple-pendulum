@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TweenOne from 'rc-tween-one';
 import BezierPlugin from 'rc-tween-one/lib/plugin/BezierPlugin';
 
@@ -6,16 +6,19 @@ import './animation.css'
 TweenOne.plugins.push(BezierPlugin);
 
 export default function SimplePendulumAnimation() {
+    const [state, setState] = useState({})
     return (
-        <div style={{ position: 'relative', height: 200, width: 650, margin: '40px auto' }}>
+        <div style={{ position: 'relative', height: '100%', width: '100%' }}>
             <TweenOne
                 animation={{
                     bezier: {
                         type: 'soft',
                         autoRotate: true,
                         vars: [
-                            { x: 150, y: 150 },
-                            { x: 300, y: 0 },
+                            { x: 150, y: 0 },
+                            { x: 0, y: 0 },
+
+                           
                         ],
                     },
                     repeat: -1,
@@ -27,9 +30,9 @@ export default function SimplePendulumAnimation() {
                 className="code-box-shape"
                 paused={false}
             >
-                 <div className="code-box-shape"></div>
+                <div className="code-box-shape"></div>
             </TweenOne>
-           
+
         </div>
     )
 }
