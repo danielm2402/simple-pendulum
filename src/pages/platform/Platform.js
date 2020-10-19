@@ -3,10 +3,13 @@ import './Platform.css'
 import SimplePendulumAnimation from './animations/SimplePendulumAnimation'
 import Form from './inputs/Form'
 import { ButtonGroup, Button } from '@material-ui/core'
-
+import ExampleAnimation from './animations/ExampleAnimation'
 
 export default function Platform() {
     const [page, setPage] = useState('solution')
+    const [pageConfing, setPageConfig] = useState('data')
+    const [configInputs, setConfigInputs] = useState({})
+    const [inputsData, setInputsData] = useState({})
     return (
         <div className="page-platform">
             <div className="platform-header">
@@ -27,12 +30,18 @@ export default function Platform() {
                 <div className="platform-tools">
                 </div>
                 <div className="platform-draw">
-                    {page === 'solution' ? <></> :
+                    {page === 'solution' ? <ExampleAnimation /> :
                         <SimplePendulumAnimation />
                     }
                 </div>
                 <div className="platform-inputs">
-                    <Form />
+                    <ButtonGroup size='small' color='primary'>
+                        <Button variant={pageConfing === 'data' ? 'contained' : null} onClick={() => setPageConfig('data')}>Data</Button>
+                        <Button variant={pageConfing === 'configuration' ? 'contained' : null} onClick={() => setPageConfig('configuration')}>Config</Button>
+                    </ButtonGroup>
+                    {pageConfing === 'data' ? <Form /> :
+                        <></>
+                    }
                 </div>
             </div>
         </div>

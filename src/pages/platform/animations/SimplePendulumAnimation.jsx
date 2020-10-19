@@ -15,10 +15,8 @@ export default function SimplePendulumAnimation() {
                         type: 'soft',
                         autoRotate: true,
                         vars: [
-                            { x: 150, y: 0 },
-                            { x: 0, y: 0 },
-
-                           
+                            { x: 250, y: 250 },
+                            { x: 350, y: 0 },
                         ],
                     },
                     repeat: -1,
