@@ -1,12 +1,70 @@
-.code-box-shape{
+
+.ball {
+    display: block;
+    background: black;
+    margin: 0;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background: radial-gradient(circle at 100px 100px, #50E3C4, #000);
+}
+
+.stage {
     width: 100px;
     height: 100px;
-    background-color: green;
-    background: radial-gradient(at top left, #0F0 20%, #040);
-    -ms-border-radius: 150px;
-    -moz-border-radius: 150px;
-    -webkit-border-radius: 150px;
-    -o-border-radius: 150px;
-    border-radius: 150px;
-    margin: 0px auto;
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    -o-perspective: 1200px;
+    perspective: 1200px;
+    -webkit-perspective-origin: 50% 50%;
+    -moz-perspective-origin: 50% 50%;
+    -ms-perspective-origin: 50% 50%;
+    -o-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
 }
+.section-ball{
+    left: calc(50% - 50px);
+    top: calc(40% - 50px);
+    position: absolute ;
+    transform-origin: 0% 0%;
+    animation: mymove2 1s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function:linear
+}
+
+.pendulum{
+    transform-origin: 0% 0%;
+    position: absolute ;
+    border: 1px solid #000;
+    width: 1px;
+    height: calc(40% - 50px);
+    left: calc(50% - 1px);
+    background-color: #000;
+    animation: mymove 1s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function:linear
+}
+
+@keyframes mymove {
+    from {
+       
+
+        transform: rotate(90deg);
+    }
+    to {
+        
+        transform: rotate(-90deg);
+    }
+  }
+
+  @keyframes mymove2 {
+    from {
+       
+        transform: rotate(180deg);
+    }
+    to {
+        
+        transform: rotate(90deg);
+    }
+  }

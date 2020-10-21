@@ -7,30 +7,20 @@ TweenOne.plugins.push(BezierPlugin);
 
 export default function SimplePendulumAnimation() {
     const [state, setState] = useState({})
+
     return (
         <div style={{ position: 'relative', height: '100%', width: '100%' }}>
-            <TweenOne
-                animation={{
-                    bezier: {
-                        type: 'soft',
-                        autoRotate: true,
-                        vars: [
-                            { x: 250, y: 250 },
-                            { x: 350, y: 0 },
-                        ],
-                    },
-                    repeat: -1,
-                    yoyo: true,
-                    duration: 1000,
-                }
-                }
-                style={{ margin: 0 }}
-                className="code-box-shape"
-                paused={false}
-            >
-                <div className="code-box-shape"></div>
-            </TweenOne>
+            <div style={{ position: 'absolute', width: '100%', height: '100%' }} >
+                <div className="pendulum" >
 
+                </div>
+            </div>
+            <div className="section-ball">
+                <section class="stage">
+                    <figure class="ball"><span class="shadow"></span></figure>
+                </section>
+                {/*  <div className="code-box-shape"></div> */}
+            </div>
         </div>
     )
 }

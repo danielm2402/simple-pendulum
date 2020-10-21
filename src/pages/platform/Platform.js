@@ -30,7 +30,7 @@ export default function Platform() {
                 <div className="platform-tools">
                 </div>
                 <div className="platform-draw">
-                    {page === 'solution' ? <ExampleAnimation /> :
+                    {page === 'solution' ? <></>:
                         <SimplePendulumAnimation />
                     }
                 </div>

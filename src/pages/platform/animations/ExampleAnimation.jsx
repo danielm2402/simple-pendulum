@@ -46,9 +46,9 @@ export default function BannerImage() {
           />
         </defs>
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" transform="translate(0, 30)">
-         
+
           <g id="Group-14" transform="translate(150.000000, 230.000000)">
-            
+
             <mask id="mask-2">
               <use xlinkHref="#mask" fill="white" transform="translate(-42, -33)" />
             </mask>
@@ -64,6 +64,9 @@ export default function BannerImage() {
                       strokeLinecap="round"
                       transform="translate(127.105708, 73.561453) rotate(-16.000000) translate(-127.105708, -73.561453) "
                     />
+                  </g>
+                  <g transform="translate(-16, -52)">
+                    <line x1="0" y1="0" x2="200" y2="200" style={{stroke:'rgb(255,0,0)',strokeWidth:2}} />
                   </g>
                   <TweenOne component="g" animation={animate.greenBall}>
                     <image
