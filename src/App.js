@@ -8,6 +8,9 @@ const theme = createMuiTheme({
     primary:{
       main: '#444E59'
     },
+    secondary:{
+      main: '#50E3C4'
+    }
   }
 });
 function App() {

@@ -1,15 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Platform.css'
 import SimplePendulumAnimation from './animations/SimplePendulumAnimation'
 import Form from './inputs/Form'
 import { ButtonGroup, Button } from '@material-ui/core'
-import ExampleAnimation from './animations/ExampleAnimation'
+import Checks from './checks/Checks'
+import { MdSettings } from 'react-icons/md'
 
 export default function Platform() {
     const [page, setPage] = useState('solution')
-    const [pageConfing, setPageConfig] = useState('data')
-    const [configInputs, setConfigInputs] = useState({})
-    const [inputsData, setInputsData] = useState({})
+    const [pageConfig, setPageConfig] = useState('data')
+    const [configInputs, setConfigInputs] = useState({ length: { name: 'length', data: 1, checked: true, label:'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label:'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 0, checked: true,label:'Ángulo inicial' }, velInitial:{ name: 'velInitial', data: 0, checked: true, label:'Velocidad inicial' } })
+
+    const handleChecks = (name, value) => {
+        setConfigInputs({...configInputs, [name]:{...configInputs[name], checked:value}})
+    }
+    const handleInputs=(name, value)=>{
+        setConfigInputs({...configInputs, [name]:{...configInputs[name], data:value}})
+    }
+    useEffect(() => {
+        console.log(configInputs)
+    }, [configInputs])
     return (
         <div className="page-platform">
             <div className="platform-header">
@@ -30,17 +40,17 @@ export default function Platform() {
                 <div className="platform-tools">
                 </div>
                 <div className="platform-draw">
-                    {page === 'solution' ? <></>:
+                    {page === 'solution' ? <></> :
                         <SimplePendulumAnimation />
                     }
                 </div>
                 <div className="platform-inputs">
                     <ButtonGroup size='small' color='primary'>
-                        <Button variant={pageConfing === 'data' ? 'contained' : null} onClick={() => setPageConfig('data')}>Data</Button>
-                        <Button variant={pageConfing === 'configuration' ? 'contained' : null} onClick={() => setPageConfig('configuration')}>Config</Button>
+                        <Button variant={pageConfig === 'data' ? 'contained' : null} onClick={() => setPageConfig('data')}>Data</Button>
+                        <Button variant={pageConfig === 'configuration' ? 'contained' : null} onClick={() => setPageConfig('configuration')}><MdSettings /></Button>
                     </ButtonGroup>
-                    {pageConfing === 'data' ? <Form /> :
-                        <></>
+                    {pageConfig === 'data' ? <Form configInputs={configInputs} handleInputs={handleInputs} /> :
+                        <Checks configInputs={configInputs} handleChecks={handleChecks} />
                     }
                 </div>
             </div>

@@ -1,0 +1,9 @@
+.container-check{
+    width: 90%;
+    margin-bottom: 10px;
+}
+.check-title{
+    font-size: 0.67em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}

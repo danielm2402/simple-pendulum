@@ -1,4 +1,3 @@
-
 .ball {
     display: block;
     background: black;
@@ -23,48 +22,164 @@
     -o-perspective-origin: 50% 50%;
     perspective-origin: 50% 50%;
 }
-.section-ball{
+
+.section-ball {
     left: calc(50% - 50px);
     top: calc(40% - 50px);
-    position: absolute ;
     transform-origin: 0% 0%;
     animation: mymove2 1s infinite;
     animation-direction: alternate-reverse;
-    animation-timing-function:linear
+    animation-timing-function: linear
 }
 
-.pendulum{
-    transform-origin: 0% 0%;
-    position: absolute ;
-    border: 1px solid #000;
-    width: 1px;
-    height: calc(40% - 50px);
-    left: calc(50% - 1px);
-    background-color: #000;
-    animation: mymove 1s infinite;
+.container-pendulum {
+    left: calc(50% - 50px);
+    position: absolute;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transform-origin: top center;
+   animation: mymove 2s infinite;
     animation-direction: alternate-reverse;
-    animation-timing-function:linear
+    animation-timing-function: linear 
 }
 
+.pendulum {
+    width: 2px;
+    height: 100%;
+    left: calc(50% - 1px);
+    background-image: url('https://sc01.alicdn.com/kf/HTB1y1rOXEvrK1RjSszfq6xJNVXaB.jpg_350x350.jpg');
+}
+
+.protactor-angular {
+    position: absolute;
+    left: calc(50% - 150px);
+    width: 300px;
+    height: 150px;
+    border: 2px solid rgb(0, 0, 0);
+    -moz-border-radius: 150px 150 0 0;
+    -webkit-border-radius: 150 150 0 0;
+    border-radius: 0 0 150px 150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font: 11px Monaco, MonoSpace;
+    background-color: rgba(255, 255, 255, 0.5);
+   
+}
+.subprotactor-angular{
+    position: absolute;
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 100px;
+    border: 2px solid rgb(0, 0, 0);
+    -moz-border-radius: 100px 100 0 0;
+    -webkit-border-radius: 100 100 0 0;
+    border-radius: 0 0 100px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font: 11px Monaco, MonoSpace;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+}
+.chart{
+    position: absolute;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transform-origin: top center;
+    align-items: center;
+}
+.chart1{
+    transform: rotate(90deg);
+}
+.chart2{
+    transform: rotate(80deg);
+}
+.chart3{
+    transform: rotate(70deg);
+}
+.chart4{
+    transform: rotate(60deg);
+}
+
+.chart5{
+    transform: rotate(50deg);
+}
+.chart6{
+    transform: rotate(40deg);
+}
+.chart7{
+    transform: rotate(30deg);
+}
+.chart8{
+    transform: rotate(20deg);
+}
+
+.chart9{
+    transform: rotate(10deg);
+}
+.chart10{
+    transform: rotate(0deg);
+}
+.chart11{
+    transform: rotate(-10deg);
+}
+.chart12{
+    transform: rotate(-20deg);
+}
+
+.chart13{
+    transform: rotate(-30deg);
+}
+.chart14{
+    transform: rotate(-40deg);
+}
+.chart15{
+    transform: rotate(-50deg);
+}
+.chart16{
+    transform: rotate(-60deg);
+}
+
+.chart17{
+    transform: rotate(-70deg);
+}
+.chart18{
+    transform: rotate(-80deg);
+}
+.chart19{
+    transform: rotate(-90deg);
+}
+
+/* .char1 {
+    transform: rotate(90deg);
+}
+
+.char2 {
+    transform: rotate(80deg);
+}
+
+.char3 {
+    transform: rotate(70deg);
+}
+
+.char4 {
+    transform: rotate(60deg);
+}
+.char5 {
+    transform: rotate(50deg);
+}
+ */
 @keyframes mymove {
     from {
-       
-
-        transform: rotate(90deg);
+        transform: rotate(40deg);
     }
     to {
-        
-        transform: rotate(-90deg);
+        transform: rotate(-40deg);
     }
-  }
-
-  @keyframes mymove2 {
-    from {
-       
-        transform: rotate(180deg);
-    }
-    to {
-        
-        transform: rotate(90deg);
-    }
-  }
+}
