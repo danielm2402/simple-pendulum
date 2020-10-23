@@ -1,10 +1,21 @@
 import React, { useState } from 'react'
 import TweenOne from 'rc-tween-one';
 import BezierPlugin from 'rc-tween-one/lib/plugin/BezierPlugin';
-
+import styled, {keyframes} from 'styled-components';
 import './animation.css'
-TweenOne.plugins.push(BezierPlugin);
 
+const moveVertically = (y) => keyframes`
+    0% {
+        transform : translateY(0px) 
+    }
+    100% {
+        transform : translateY(${y}px)
+    }
+`;
+
+const BallAnimation = styled.div`
+    animation : ${props => moveVertically(props.y)} ${props => props.time}s linear
+`;
 export default function SimplePendulumAnimation() {
     const [state, setState] = useState({})
 

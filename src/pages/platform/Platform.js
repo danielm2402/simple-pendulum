@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './Platform.css'
 import SimplePendulumAnimation from './animations/SimplePendulumAnimation'
 import Form from './inputs/Form'
 import { ButtonGroup, Button } from '@material-ui/core'
 import Checks from './checks/Checks'
 import { MdSettings } from 'react-icons/md'
+import Blackboard from './blackboard/Blackboard'
+import { pendulum } from '../../services/index'
 
 export default function Platform() {
     const [page, setPage] = useState('solution')
     const [pageConfig, setPageConfig] = useState('data')
-    const [configInputs, setConfigInputs] = useState({ length: { name: 'length', data: 1, checked: true, label:'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label:'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 0, checked: true,label:'Ángulo inicial' }, velInitial:{ name: 'velInitial', data: 0, checked: true, label:'Velocidad inicial' } })
+    const [configInputs, setConfigInputs] = useState({ length: { name: 'length', data: 1, checked: true, label:'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label:'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 7, checked: true,label:'Ángulo inicial' }, velInitial:{ name: 'velInitial', data: 0, checked: true, label:'Velocidad inicial' } })
+    const [response, setResponse]= useState({})
 
     const handleChecks = (name, value) => {
         setConfigInputs({...configInputs, [name]:{...configInputs[name], checked:value}})
@@ -17,9 +20,12 @@ export default function Platform() {
     const handleInputs=(name, value)=>{
         setConfigInputs({...configInputs, [name]:{...configInputs[name], data:value}})
     }
+
     useEffect(() => {
-        console.log(configInputs)
+       setResponse(pendulum(configInputs.length.data, configInputs.gravity.data, configInputs.posInitial.data, configInputs.velInitial.data))
     }, [configInputs])
+
+
     return (
         <div className="page-platform">
             <div className="platform-header">
@@ -40,7 +46,7 @@ export default function Platform() {
                 <div className="platform-tools">
                 </div>
                 <div className="platform-draw">
-                    {page === 'solution' ? <></> :
+                    {page === 'solution' ? <Blackboard inputs={configInputs} response={response} /> :
                         <SimplePendulumAnimation />
                     }
                 </div>
