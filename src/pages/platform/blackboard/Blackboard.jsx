@@ -2,48 +2,93 @@ import React, { useRef, useEffect } from 'react'
 import './Blackboard.css'
 
 export default function Index(props) {
-    const canvasRef = useRef(null)
-    const containerRef = useRef(null)
+
     useEffect(() => {
-        const canvas = canvasRef.current
-        const ctx = canvas.getContext('2d')
-        canvas.width = containerRef.current.clientWidth;     // equals window dimension
-        canvas.height = containerRef.current.clientHeight;
+
     }, [])
 
-    useEffect(()=>{
-        const canvas = canvasRef.current
-        const ctx = canvas.getContext('2d')
-        canvas.width = containerRef.current.clientWidth;     // equals window dimension
-        canvas.height = containerRef.current.clientHeight;
-        ctx.font = "20px Arial";
-        
-        ctx.fillText("frecuencia natural de vibracion (Wo):", 10, 50)
-        ctx.fillText("Wo = (g/l)^1/2", 100, 80)
-        ctx.fillText(`Wo = (${props.inputs.gravity.data}/${props.inputs.length.data})^1/2`, 100, 110)
-        ctx.fillText("Wo= "+props.response.frecuenciaNatural, 100, 140);
+    useEffect(() => {
+        /*
+  
+          ctx.fillText("periodo (T):", 10, 290)
+          ctx.fillText("T = 2*PI*(l/g)^1/2", 100, 320)
+          ctx.fillText(`T = 2*PI*(${props.inputs.length.data}/${props.inputs.gravity.data})^(2*PI)`, 100, 350)
+          ctx.fillText("f= "+props.response.periodo, 100, 380);
+  
+          ctx.fillText("Ecuación diferencial de movimiento", 10, 410)
+          ctx.fillText("Theta(t) = Theta0 * Cos(Wo t + phi)", 100, 440)
+          ctx.fillText("Theta(t) = Theta0 * Cos(Wo t + phi)", 100, 440)
+         // Theta(0) = Theta0 * Cos(Wo*0 + phi) = */
 
-        ctx.fillText("frecuencia (f):", 10, 170)
-        ctx.fillText("f = Wo/(2*PI)", 100, 200)
-        ctx.fillText(`f =  ${props.response.frecuenciaNatural}/(2*PI)`, 100, 230)
-        ctx.fillText("f= "+props.response.frecuencia, 100, 260);
 
-        ctx.fillText("periodo (T):", 10, 290)
+    }, [props.response])
+    return (
+        <div className="container-solution" >
+            <div className="left-solution">
+                <div className="title">
+                    <h4>Frecuencia natural de vibracion (Wo):</h4>
+                </div>
+                <div className="ecuation">
+                    <h5>W<sub>0</sub>=&#8730;<div class="frac">
+                        <span>g</span>
+                        <span class="symbol">/</span>
+                        <span class="bottom">l</span>
+                    </div></h5>
+                    <h5>W<sub>0</sub>=&#8730;<div class="frac">
+                        <span>{props.inputs.gravity.data}</span>
+                        <span class="symbol">/</span>
+                        <span class="bottom">{props.inputs.length.data}</span>
+                    </div></h5>
+                    <h5>W<sub>0</sub>={props.response.frecuenciaNatural}</h5>
+                </div>
+                <div className="title">
+                    <h4>Frecuencia (f):</h4>
+                </div>
+                <div className="ecuation">
+                    <h5>f=<div class="frac">
+                        <span>W<sub>0</sub></span>
+                        <span class="symbol">/</span>
+                        <span class="bottom">2&Pi;</span>
+                    </div></h5>
+                    <h5>f=<div class="frac">
+                        <span>{props.response.frecuenciaNatural}</span>
+                        <span class="symbol">/</span>
+                        <span class="bottom">2&Pi;</span>
+                    </div></h5>
+                    <h5>
+                        f={props.response.frecuencia}
+                    </h5>
+                </div>
+
+              {/*   ctx.fillText("periodo (T):", 10, 290)
         ctx.fillText("T = 2*PI*(l/g)^1/2", 100, 320)
         ctx.fillText(`T = 2*PI*(${props.inputs.length.data}/${props.inputs.gravity.data})^(2*PI)`, 100, 350)
-        ctx.fillText("f= "+props.response.periodo, 100, 380);
+        ctx.fillText("f= "+props.response.periodo, 100, 380); */}
+                <div className="title">
+                    <h4>Periodo (T):</h4>
+                </div>
+                <div className="ecuation">
+                    <h5>T=2&Pi;&#8730;<div class="frac">
+                        <span>l</span>
+                        <span class="symbol">/</span>
+                        <span class="bottom">g</span>
+                    </div></h5>
+                    <h5>T=2&Pi;&#8730;<div class="frac">
+                        <span>{props.inputs.length.data}</span>
+                        <span class="symbol">/</span>
+                        <span class="bottom">{props.inputs.gravity.data}</span>
+                    </div></h5>
+                    <h5>
+                        f={props.response.periodo}
+                    </h5>
+                </div>
 
-        ctx.fillText("Ecuación diferencial de movimiento", 10, 410)
-        ctx.fillText("Theta(t) = Theta0 * Cos(Wo t + phi)", 100, 440)
-        
-
-        console.log(containerRef)
-    },[props.response])
-    return (
-        <div className="container-solution" ref={containerRef}>
-            <canvas className="canvas" ref={canvasRef}>
-
-            </canvas>
+            </div>
+            <div className="right-solution">
+                <div className="title">
+                    <h4>Hola mundo</h4>
+                </div>
+            </div>
         </div>
     )
 }

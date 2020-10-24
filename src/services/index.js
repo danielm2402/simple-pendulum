@@ -25,11 +25,11 @@ export function pendulum(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni) {
 
     return {
       
-            frecuenciaNatural: varW,//rad/seg
-            periodo: varT,//s
-            frecuencia: varF,//hz
-            desfase: varPhi,//rad
-            amplitud: varTheta0//ang
+            frecuenciaNatural: varW.toFixed(2),//rad/seg
+            periodo: varT.toFixed(2),//s
+            frecuencia: varF.toFixed(2),//hz
+            desfase: varPhi.toFixed(2),//rad
+            amplitud: varTheta0.toFixed(2)//ang
    
     }
 
