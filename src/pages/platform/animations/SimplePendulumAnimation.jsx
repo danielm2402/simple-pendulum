@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-import TweenOne from 'rc-tween-one';
-import BezierPlugin from 'rc-tween-one/lib/plugin/BezierPlugin';
+import React from 'react'
 import styled, { keyframes } from 'styled-components';
 import './animation.css'
 
@@ -29,8 +27,6 @@ const BallAnimation = styled.div`
 `;
 //animation: mymove 2s infinite;
 export default function SimplePendulumAnimation(props) {
-    const [state, setState] = useState({})
-
     return (
         <div style={{ position: 'relative', height: '100%', width: '100%' }}>
             <div style={{ position: 'absolute', width: '100%', height: '100%', overflow: 'hidden' }} >

@@ -7,10 +7,11 @@ export default function Header() {
                 __Simple Pendulum
             </div>
             <div className="container-navigation">
-                <a href="#">Start</a>
-                <a href="#">GitHub</a>
-                <a href="#">Get to know us</a>
-            </div>
+                <a href="#/" onClick={() => document?.querySelector(`.page-platform`)
+                    .scrollIntoView({ behavior: "smooth" })}>Start</a>
+            <a rel="noopener noreferrer" href="https://github.com/danielm2402/simple-pendulum" target="_blank">GitHub</a>
+            <a href="#/">Get to know us</a>
         </div>
+        </div >
     )
 }

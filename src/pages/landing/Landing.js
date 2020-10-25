@@ -13,7 +13,7 @@ export default function Landing() {
                     Ea culpa Lorem nulla proident labore cupidatat commodo reprehenderit veniam.
                 </div>
                 <div className="container-help">
-                    <a href="#" className="button-git">Give me a star <FaGithub size="2rem" color="#ffffff" /></a>
+                    <a rel="noopener noreferrer" href="https://github.com/danielm2402/simple-pendulum" target="_blank" className="button-git">Give me a star <FaGithub size="2rem" color="#ffffff" /></a>
                 </div>
             </div>
             <div className="container-right-landing-page">

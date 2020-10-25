@@ -56,7 +56,7 @@
     background-image: url('https://sc01.alicdn.com/kf/HTB1y1rOXEvrK1RjSszfq6xJNVXaB.jpg_350x350.jpg');
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-start;
     justify-content: flex-end;
 }
 

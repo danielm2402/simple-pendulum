@@ -14,12 +14,12 @@ export default function Index(props) {
                 <div className="ecuation">
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'W_o=\sqrt (frac{g}{l})'}</MathJax.Node>
+                            <MathJax.Node >{'W_o=sqrt (frac{g}{l})'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'W_o=\sqrt (frac{' + props.inputs.gravity.data + '}{' + props.inputs.length.data + '})'}</MathJax.Node>
+                            <MathJax.Node >{'W_o=sqrt (frac{' + props.inputs.gravity.data + '}{' + props.inputs.length.data + '})'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>
@@ -55,12 +55,12 @@ export default function Index(props) {
                 <div className="ecuation">
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'T=2pi\sqrt(frac{l}{g})'}</MathJax.Node>
+                            <MathJax.Node >{'T=2pisqrt(frac{l}{g})'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'T=2pi\sqrt(frac{' + props.inputs.length.data + '}{' + props.inputs.gravity.data + '})'}</MathJax.Node>
+                            <MathJax.Node >{'T=2pisqrt(frac{' + props.inputs.length.data + '}{' + props.inputs.gravity.data + '})'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>

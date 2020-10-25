@@ -10,6 +10,7 @@ export default function Form(props) {
                         <input name={item.name} value={item.data} onChange={(e) => props.handleInputs(e.target.name, e.target.value)} type="number" />
                     </div>
                 }
+                return <></>
             })}
         </div>
     )

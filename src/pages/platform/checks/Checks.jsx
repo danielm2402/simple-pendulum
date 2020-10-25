@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { FormGroup, FormControlLabel, Checkbox, FormLabel } from '@material-ui/core'
 import './Checks.css'
 export default function Checks(props) {
