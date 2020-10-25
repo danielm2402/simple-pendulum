@@ -5,23 +5,25 @@ import Platform from './pages/platform/Platform'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
-    primary:{
+    primary: {
       main: '#444E59'
     },
-    secondary:{
+    secondary: {
       main: '#50E3C4'
     }
   }
 });
 function App() {
   return (
-    <MuiThemeProvider theme={theme}>
-      <div>
+
+    <div id="app">
+      <MuiThemeProvider theme={theme}>
         <Header />
         <LandingPage />
         <Platform />
-      </div>
-    </MuiThemeProvider>
+      </MuiThemeProvider>
+    </div >
+
   );
 }
 
