@@ -1,41 +1,53 @@
 import React, { useState } from 'react'
 import TweenOne from 'rc-tween-one';
 import BezierPlugin from 'rc-tween-one/lib/plugin/BezierPlugin';
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import './animation.css'
 
-const moveVertically = (y) => keyframes`
-    0% {
-        transform : translateY(0px) 
-    }
-    100% {
-        transform : translateY(${y}px)
-    }
+const moveVertically =(y)=> keyframes`
+from {
+    transform: rotate(${y}deg);
+}
+to {
+    transform: rotate(-${y}deg);
+}
+
 `;
 
 const BallAnimation = styled.div`
-    animation : ${props => moveVertically(props.y)} ${props => props.time}s linear
+    left: calc(50% - 50px);
+    position: absolute;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transform-origin: top center;
+    animation :${props =>moveVertically(props.y)} ${props => props.time}s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
 `;
-export default function SimplePendulumAnimation() {
+//animation: mymove 2s infinite;
+export default function SimplePendulumAnimation(props) {
     const [state, setState] = useState({})
 
     return (
         <div style={{ position: 'relative', height: '100%', width: '100%' }}>
             <div style={{ position: 'absolute', width: '100%', height: '100%', overflow: 'hidden' }} >
-                <div className="container-pendulum">
+                <BallAnimation y={props.angle} time={props.time}>
                     <div className="pendulum" >
 
                     </div>
                     <section class="stage">
                         <figure class="ball"><span class="shadow"></span></figure>
                     </section>
-                </div>
+                </BallAnimation>
             </div>
-            <div style={{ position: 'absolute', width: '100%', height: '100%', overflow:'hidden' }} >
+            <div style={{ position: 'absolute', width: '100%', height: '100%', overflow: 'hidden' }} >
                 <div className="protactor-angular">
                     <div className="chart chart1">
                         <span class="char1">|</span>
-                       
+
                     </div>
                     <div className="chart chart2">
                         <span class="char1">|</span>
@@ -107,7 +119,7 @@ export default function SimplePendulumAnimation() {
                     </div>
                     <div className="chart chart19">
                         <span class="char1">|</span>
-                       
+
                     </div>
                 </div>
                 <div className="subprotactor-angular">
