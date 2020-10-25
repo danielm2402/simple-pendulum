@@ -6,13 +6,14 @@ import { ButtonGroup, Button } from '@material-ui/core'
 import Checks from './checks/Checks'
 import { MdSettings } from 'react-icons/md'
 import Blackboard from './blackboard/Blackboard'
-import { pendulum } from '../../services/index'
+import { pendulum, energies } from '../../services/index'
 
 export default function Platform() {
     const [page, setPage] = useState('solution')
     const [pageConfig, setPageConfig] = useState('data')
     const [configInputs, setConfigInputs] = useState({ length: { name: 'length', data: 1, checked: true, label:'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label:'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 7, checked: true,label:'Ángulo inicial' }, velInitial:{ name: 'velInitial', data: 0, checked: true, label:'Velocidad inicial' }, mass:{ name: 'mass', data: 10, checked: false, label:'Masa del objeto' } })
     const [response, setResponse]= useState({})
+    const [responseEnergies, setResponseEnergies]= useState({})
 
     const handleChecks = (name, value) => {
         setConfigInputs({...configInputs, [name]:{...configInputs[name], checked:value}})
@@ -22,7 +23,10 @@ export default function Platform() {
     }
 
     useEffect(() => {
-       setResponse(pendulum(configInputs.length.data, configInputs.gravity.data, configInputs.posInitial.data, configInputs.velInitial.data))
+        setResponse(pendulum(configInputs.length.data, configInputs.gravity.data, configInputs.posInitial.data, configInputs.velInitial.data))
+        if(configInputs.mass.checked){
+            setResponseEnergies(energies(configInputs.mass.data,configInputs.gravity.data,configInputs.length.data,configInputs.posInitial.data,configInputs.velInitial.data))
+        }
     }, [configInputs])
 
 
@@ -46,7 +50,7 @@ export default function Platform() {
                 <div className="platform-tools">
                 </div>
                 <div className="platform-draw">
-                    {page === 'solution' ? <Blackboard inputs={configInputs} response={response} /> :
+                    {page === 'solution' ? <Blackboard inputs={configInputs} response={response} energies={responseEnergies} /> :
                         <SimplePendulumAnimation angle={configInputs.posInitial.data} length={configInputs.length.data} time={response.hasOwnProperty('periodo')?response.periodo/2:0} />
                     }
                 </div>

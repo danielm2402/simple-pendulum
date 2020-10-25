@@ -33,3 +33,13 @@ export function pendulum(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni) {
     }
 
 }
+
+export function energies(prmMasa, prmGravedad, prmLongCuerda, prmPosIni, prmVelIni){
+    let EP = prmMasa*prmGravedad*prmLongCuerda*((prmPosIni^2)/2)
+    let EC = 1/2 * prmMasa *prmLongCuerda^2 * prmVelIni^2
+    return{
+        ep: EP,
+        ec: EC,
+        et: EP+EC
+    }
+}
