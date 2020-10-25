@@ -1,7 +1,7 @@
 import React from 'react'
 import './Landing.css'
 import { FaGithub } from "react-icons/fa";
-
+import gif from '../../assets/gif-pendulum.gif'
 export default function Landing() {
     return (
         <div className="page-landing-page">
@@ -13,12 +13,14 @@ export default function Landing() {
                     Ea culpa Lorem nulla proident labore cupidatat commodo reprehenderit veniam.
                 </div>
                 <div className="container-help">
-                    <a href="#" className="button-git">Give me a star <FaGithub size="2rem" color="#ffffff"/></a>
+                    <a href="#" className="button-git">Give me a star <FaGithub size="2rem" color="#ffffff" /></a>
                 </div>
             </div>
             <div className="container-right-landing-page">
                 <div className="framework-gif">
-
+                    <div className="container-gif">
+                        <img src={gif} alt="SIMPLE_PENDULUM" />
+                    </div>
                 </div>
             </div>
         </div>

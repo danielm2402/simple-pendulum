@@ -1,0 +1,83 @@
+.container-solution {
+    width: 100%;
+    height: 100%;
+    background: url(https://images.creativemarket.com/0.1.0/ps/8034524/300/200/m2/fpc/wm0/vccqltmjbp24stdhk3pftpqhf3d4ok8sy9tiaen3mca8oqvuoj4cbuwtuqa1026w-.jpg?1585512940&s=bf209619031b2f991787df522ff68b3d);
+    display: flex;
+    overflow-y: auto;
+}
+
+.left-solution {
+    width: 50%;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.right-solution {
+    width: 50%;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.title {
+    margin-top: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+.ecuation{
+    text-align: center; 
+}
+
+.title h4 {
+    font-family: Ubuntu;
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    color: #234f4f;
+    font-size: 20px;
+    line-height: 16px;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+.ecuation h5 {
+    font-family: Ubuntu;
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    color: #162727;
+    font-size: 17px;
+    line-height: 16px;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: orange;
+    }
+}
+
