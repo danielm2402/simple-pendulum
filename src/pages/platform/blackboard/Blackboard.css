@@ -3,6 +3,7 @@
     height: 100%;
     background: url(https://images.creativemarket.com/0.1.0/ps/8034524/300/200/m2/fpc/wm0/vccqltmjbp24stdhk3pftpqhf3d4ok8sy9tiaen3mca8oqvuoj4cbuwtuqa1026w-.jpg?1585512940&s=bf209619031b2f991787df522ff68b3d);
     display: flex;
+    overflow-y: auto;
 }
 
 .left-solution {
@@ -14,6 +15,7 @@
 .right-solution {
     width: 50%;
     height: 100%;
+    padding-top: 20px;
 }
 
 .title {
@@ -79,20 +81,3 @@
     }
 }
 
-.frac {
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-    letter-spacing: 0.001em;
-    text-align: center;
-}
-.frac > span {
-    display: block;
-    padding: 0.1em;
-}
-.frac span.bottom {
-    border-top: thin solid black;
-}
-.frac span.symbol {
-    display: none;
-} 
