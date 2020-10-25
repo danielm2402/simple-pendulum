@@ -6,6 +6,9 @@
     height: 100px;
     width: 100px;
     background: radial-gradient(circle at 100px 100px, #50E3C4, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .stage {

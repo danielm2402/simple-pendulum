@@ -1,18 +1,10 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import MathJax from 'react-mathjax2'
 import './Blackboard.css'
 
-const ascii = 'U = 1/(R_(si) + sum_(i=1)^n(s_n/lambda_n) + R_(se))'
 
 export default function Index(props) {
 
-    useEffect(() => {
-
-    }, [])
-
-    useEffect(() => {
-
-    }, [props.response])
     return (
         <div className="container-solution" >
             <div className="left-solution">
@@ -32,7 +24,7 @@ export default function Index(props) {
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'W_o=' + props.response.frecuenciaNatural}</MathJax.Node>
+                            <MathJax.Node >{'W_o=' + props.response.frecuenciaNatural+'frac{rad}{s}'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                 </div>
@@ -52,7 +44,7 @@ export default function Index(props) {
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'f=' + props.response.frecuencia}</MathJax.Node>
+                            <MathJax.Node >{'f=' + props.response.frecuencia+'hz'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                 </div>
@@ -68,15 +60,81 @@ export default function Index(props) {
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'T=2pi\sqrt(frac{'+props.inputs.length.data+'}{'+props.inputs.gravity.data+'})'}</MathJax.Node>
+                            <MathJax.Node >{'T=2pi\sqrt(frac{' + props.inputs.length.data + '}{' + props.inputs.gravity.data + '})'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                     <MathJax.Context input='ascii'>
                         <div>
-                            <MathJax.Node >{'T='+props.response.periodo}</MathJax.Node>
+                            <MathJax.Node >{'T=' + props.response.periodo+'s'}</MathJax.Node>
                         </div>
                     </MathJax.Context>
                 </div>
+                {props.inputs.mass.checked ?
+                    <>
+                        <div className="title">
+                            <h4>Energía potencial (EP):</h4>
+                        </div>
+                        <div className="ecuation">
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{'EP= m*g*l(frac{θ^2}{2})'}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`EP= ${props.inputs.mass.data}*${props.inputs.gravity.data}*${props.inputs.length.data}(frac{${props.inputs.posInitial.data}^2}{2})`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`EP= ${props.energies.ep} J`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                        </div>
+                        <div className="title">
+                            <h4>Energía cinética (EC):</h4>
+                        </div>
+                        <div className="ecuation">
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{'EC= frac{1}{2}*m*l^2*θ^2'}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`EC= frac{1}{2}*${props.inputs.mass.data}*${props.inputs.length.data}^2*${props.inputs.posInitial.data}^2`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`EC= ${props.energies.ec} J`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                        </div>
+
+                        <div className="title">
+                            <h4>Energía total</h4>
+                        </div>
+                        <div className="ecuation">
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{'E= EP + EC'}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`E= ${props.energies.ep} + ${props.energies.ec}`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`E= ${props.energies.et} J`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                        </div>
+
+                    </>
+                    : <></>}
             </div>
             <div className="right-solution">
                 <div className="title">
