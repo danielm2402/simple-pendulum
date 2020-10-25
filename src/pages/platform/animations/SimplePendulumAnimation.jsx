@@ -32,14 +32,14 @@ export default function SimplePendulumAnimation(props) {
     const [state, setState] = useState({})
 
     return (
-        <div style={{ position: 'relative', height: '100%', width: '100%'}}>
+        <div style={{ position: 'relative', height: '100%', width: '100%' }}>
             <div style={{ position: 'absolute', width: '100%', height: '100%', overflow: 'hidden' }} >
                 <BallAnimation y={props.angle} time={props.time}>
                     <div className="pendulum" >
                         <h5 style={{ marginLeft: 4 }}>{props.length}m</h5>
                     </div>
                     <section class="stage">
-                        <figure class="ball"><span class="shadow"></span></figure>
+                        <figure class="ball"><span class="shadow">{props.mass}</span></figure>
                     </section>
                 </BallAnimation>
             </div>
