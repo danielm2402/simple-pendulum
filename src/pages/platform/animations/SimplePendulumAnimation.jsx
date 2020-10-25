@@ -4,7 +4,7 @@ import BezierPlugin from 'rc-tween-one/lib/plugin/BezierPlugin';
 import styled, { keyframes } from 'styled-components';
 import './animation.css'
 
-const moveVertically =(y)=> keyframes`
+const moveVertically = (y) => keyframes`
 from {
     transform: rotate(${y}deg);
 }
@@ -23,7 +23,7 @@ const BallAnimation = styled.div`
     align-items: center;
     justify-content: space-between;
     transform-origin: top center;
-    animation :${props =>moveVertically(props.y)} ${props => props.time}s infinite;
+    animation :${props => moveVertically(props.y)} ${props => props.time}s infinite;
     animation-direction: alternate-reverse;
     animation-timing-function: linear;
 `;
@@ -32,11 +32,11 @@ export default function SimplePendulumAnimation(props) {
     const [state, setState] = useState({})
 
     return (
-        <div style={{ position: 'relative', height: '100%', width: '100%' }}>
+        <div style={{ position: 'relative', height: '100%', width: '100%'}}>
             <div style={{ position: 'absolute', width: '100%', height: '100%', overflow: 'hidden' }} >
                 <BallAnimation y={props.angle} time={props.time}>
                     <div className="pendulum" >
-
+                        <h5 style={{ marginLeft: 4 }}>{props.length}m</h5>
                     </div>
                     <section class="stage">
                         <figure class="ball"><span class="shadow"></span></figure>

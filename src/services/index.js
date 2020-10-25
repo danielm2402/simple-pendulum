@@ -24,7 +24,6 @@ export function pendulum(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni) {
     varTheta0 = (prmPosIni) / Math.cos(varPhi);
 
     return {
-      
             frecuenciaNatural: varW.toFixed(2),//rad/seg
             periodo: varT.toFixed(2),//s
             frecuencia: varF.toFixed(2),//hz

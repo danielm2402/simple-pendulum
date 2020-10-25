@@ -56,7 +56,7 @@ overflow: hidden;
 .platform-canvas .platform-draw{
     width: 78%;
     height: 100%;
-    background-image: url('../../assets/bg/bg.png');
+    background-image: url('../../assets/bg1.jpg');
     border-top: 2px solid #F6F8F8
     ;
 }

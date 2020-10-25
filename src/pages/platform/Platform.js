@@ -47,7 +47,7 @@ export default function Platform() {
                 </div>
                 <div className="platform-draw">
                     {page === 'solution' ? <Blackboard inputs={configInputs} response={response} /> :
-                        <SimplePendulumAnimation angle={configInputs.posInitial.data} time={response.hasOwnProperty('periodo')?response.periodo/2:0} />
+                        <SimplePendulumAnimation angle={configInputs.posInitial.data} length={configInputs.length.data} time={response.hasOwnProperty('periodo')?response.periodo/2:0} />
                     }
                 </div>
                 <div className="platform-inputs">
