@@ -21,6 +21,10 @@ export default function Checks(props) {
                         control={<Checkbox color="secondary" checked={props.configInputs.posInitial.checked} onChange={(e) => {props.handleChecks(e.target.name, e.target.checked) }} name="posInitial" />}
                         label={<span className="check-title">Posición inicial</span>}
                     />
+                    <FormControlLabel
+                        control={<Checkbox color="secondary" checked={props.configInputs.mass.checked} onChange={(e) => {props.handleChecks(e.target.name, e.target.checked) }} name="mass" />}
+                        label={<span className="check-title">Masa</span>}
+                    />
                 </FormGroup>
             </div>
         </div>

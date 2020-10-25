@@ -11,7 +11,7 @@ import { pendulum } from '../../services/index'
 export default function Platform() {
     const [page, setPage] = useState('solution')
     const [pageConfig, setPageConfig] = useState('data')
-    const [configInputs, setConfigInputs] = useState({ length: { name: 'length', data: 1, checked: true, label:'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label:'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 7, checked: true,label:'Ángulo inicial' }, velInitial:{ name: 'velInitial', data: 0, checked: true, label:'Velocidad inicial' } })
+    const [configInputs, setConfigInputs] = useState({ length: { name: 'length', data: 1, checked: true, label:'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label:'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 7, checked: true,label:'Ángulo inicial' }, velInitial:{ name: 'velInitial', data: 0, checked: true, label:'Velocidad inicial' }, mass:{ name: 'mass', data: 10, checked: false, label:'Masa del objeto' } })
     const [response, setResponse]= useState({})
 
     const handleChecks = (name, value) => {
