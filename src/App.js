@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 function App() {
   return (
 
-    <div id="app">
+    <div id="root">
       <MuiThemeProvider theme={theme}>
         <Header />
         <LandingPage />
