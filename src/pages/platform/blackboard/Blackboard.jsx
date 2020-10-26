@@ -1,5 +1,5 @@
 import React from 'react'
-import MathJax from 'react-mathjax2'
+//import MathJax from 'react-mathjax2'
 import './Blackboard.css'
 
 
