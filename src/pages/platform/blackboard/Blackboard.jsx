@@ -1,13 +1,12 @@
 import React from 'react'
-//import MathJax from 'react-mathjax2'
+import MathJax from 'react-mathjax2'
 import './Blackboard.css'
 
 
 export default function Index(props) {
-
-    return (
+return (
         <div className="container-solution" >
-        {/*     <div className="left-solution">
+             <div className="left-solution">
                 <div className="title">
                     <h4>Frecuencia natural de vibracion (Wo):</h4>
                 </div>
@@ -202,6 +201,6 @@ export default function Index(props) {
                     </div>
                 </div>
             </div>
-         */}</div>
+         </div>
     )
 }
