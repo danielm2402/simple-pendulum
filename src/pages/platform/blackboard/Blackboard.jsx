@@ -3,7 +3,7 @@ import MathJax from 'react-mathjax2'
 import './Blackboard.css'
 
 
-export default function Index(props) {
+export default function Blackboard(props) {
 return (
         <div className="container-solution" >
              <div className="left-solution">
@@ -101,7 +101,7 @@ return (
                             </MathJax.Context>
                             <MathJax.Context input='ascii'>
                                 <div>
-                                    <MathJax.Node >{`EC= frac{1}{2}*${props.inputs.mass.data}*${props.inputs.length.data}^2*${props.inputs.posInitial.data}^2`}</MathJax.Node>
+                                    <MathJax.Node >{`EC= frac{1}{2}*${props.inputs.mass.data}*${props.inputs.length.data}^2*${props.inputs.velInitial.data}^2`}</MathJax.Node>
                                 </div>
                             </MathJax.Context>
                             <MathJax.Context input='ascii'>
@@ -167,7 +167,6 @@ return (
                         <MathJax.Context input='ascii'>
                             <div>
                                 <MathJax.Node >{'frac{dθ(0)}{dt}= -W_o θ_0 Cos(\\varphi) =' + props.inputs.velInitial.data}</MathJax.Node>
-
                             </div>
                         </MathJax.Context>
                         <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>Dividimos [2] entre [1] y despejamos para hallar Phi</h5>

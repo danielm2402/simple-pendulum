@@ -1,4 +1,5 @@
 {
+  "homepage":"https://danielm2402.github.io/simple-pendulum",
   "name": "simple-pendulum",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "mathjax-react": "^1.0.6",
     "rc-tween-one": "^2.7.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -20,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
