@@ -7,7 +7,7 @@ export default function Index(props) {
 
     return (
         <div className="container-solution" >
-            <div className="left-solution">
+        {/*     <div className="left-solution">
                 <div className="title">
                     <h4>Frecuencia natural de vibracion (Wo):</h4>
                 </div>
@@ -202,6 +202,6 @@ export default function Index(props) {
                     </div>
                 </div>
             </div>
-        </div>
+         */}</div>
     )
 }
