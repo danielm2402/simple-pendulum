@@ -177,7 +177,7 @@ return (
                         </MathJax.Context>
                         <MathJax.Context input='ascii'>
                             <div>
-                                <MathJax.Node >{'\\varphi=arctan(frac{' + props.inputs.velInitial.data + '}{' + props.response.frecuenciaNatural + props.inputs.posInitial.data + '})'}</MathJax.Node>
+                                <MathJax.Node >{'\\varphi=arctan(frac{' + props.inputs.velInitial.data + '}{' + props.response.frecuenciaNatural+'*'+ props.inputs.posInitial.data + '})'}</MathJax.Node>
                             </div>
                         </MathJax.Context>
                         <MathJax.Context input='ascii'>
