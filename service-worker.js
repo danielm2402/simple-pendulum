@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/simple-pendulum/precache-manifest.7bd5163f273045674062d8b830597d26.js"
+  "/simple-pendulum/precache-manifest.25afba495c50cdc5e5e6a67f71500235.js"
 );
 
 self.addEventListener('message', (event) => {
