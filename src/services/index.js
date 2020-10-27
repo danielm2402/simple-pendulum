@@ -9,17 +9,17 @@ export function pendulum(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni) {
     varPhi1 = Math.abs(varPhi1);
 
     if (prmPosIni >= 0 && prmVelIni >= 0) {
-        varPhi = 2 * Math.PI - varPhi1;
+        varPhi = 2 * Math.PI - varPhi1; //4
     }
     if (prmPosIni < 0 && prmVelIni >= 0) {
 
-        varPhi = Math.PI + varPhi1;
+        varPhi = Math.PI + varPhi1; //3
     }
     if (prmPosIni < 0 && prmVelIni < 0) {
-        varPhi = Math.PI - varPhi1;
+        varPhi = Math.PI - varPhi1;//2
     }
     if (prmPosIni >= 0 && prmVelIni < 0) {
-        varPhi = varPhi1;
+        varPhi = varPhi1;//1
     }
     varTheta0 = (prmPosIni) / Math.cos(varPhi);
 
