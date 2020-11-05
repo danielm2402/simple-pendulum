@@ -41,6 +41,7 @@ overflow: hidden;
     height: 100%;
     background-color:#EFF3F6;
     border-bottom: 3px solid #50E3C4;
+    overflow-y: scroll;
 }
 
 .platform-canvas{
