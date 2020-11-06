@@ -94,12 +94,12 @@ export default function Index(props) {
                                 <div className="ecuation">
                                     <MathJax.Context input='ascii'>
                                         <div>
-                                            <MathJax.Node >{'θ(t)=c*e^(-\gamma*t)* Cos (W_0*t+\phi)'}</MathJax.Node>
+                                            <MathJax.Node >{'θ(t)=c*e^(-\gamma*t)* Cos (W*t+\phi)'}</MathJax.Node>
                                         </div>
                                     </MathJax.Context>
                                     <MathJax.Context input='ascii'>
                                         <div>
-                                            <MathJax.Node >{`θ(t)=${props.response.c}*e^(-${props.response.gamma}*t)* Cos (${props.response.frecuenciaNatural}*t+${props.response.phi})`}</MathJax.Node>
+                                            <MathJax.Node >{`θ(t)=${props.response.c}*e^(-${props.response.gamma}*t)* Cos (${props.response.ommega}*t+${props.response.phi})`}</MathJax.Node>
                                         </div>
                                     </MathJax.Context>
 

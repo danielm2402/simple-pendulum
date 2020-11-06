@@ -96,7 +96,8 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
     const varW_2 = Math.pow(varW, 2);
     const varF = varW / (2 * Math.PI);
     let type
-    let c1, c2, m1, m2, phi, c, phi1
+    let c1, c2, m1, m2, phi, c, phi1, ommega
+    ommega= Math.sqrt(varW_2 - gamma_2)
     if (varW_2 == gamma_2) {
         //CRITICAMENTE AMORTIGUADO
         c1 = prmPosIni;
@@ -113,12 +114,13 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
     }
     if (varW_2 > gamma_2) {
         //SUBAMORTIGUADO
+
         type = 'subamortiguado'
         if (prmPosIni >= 0 && prmVelIni >= 0) {
             if (prmPosIni == 0) {
                 phi1 = Math.PI / 2;
                 phi = 2 * Math.PI - phi1;
-                c = Math.abs(prmVelIni / (varW * Math.sin(phi)))
+                c = Math.abs(prmVelIni / (ommega * Math.sin(phi)))
             }
             if (prmVelIni == 0) {
                 phi1 = Math.abs(Math.atan(-gamma / varW))
@@ -126,7 +128,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
                 c = Math.abs(prmPosIni / (Math.cos(phi)))
             }
             if (prmVelIni > 0 && prmPosIni > 0) {
-                phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -varW)) + (-gamma / varW)))
+                phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
                 phi = 2 * Math.PI - phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)))
             }
@@ -134,28 +136,28 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
         }
         if (prmVelIni < 0 && prmPosIni >= 0) {
             if (prmVelIni == 0) {
-                phi1 = Math.abs(Math.atan(-gamma / varW))
+                phi1 = Math.abs(Math.atan(-gamma / ommega))
                 phi = Math.PI + phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)))
             }
             else {
-                phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -varW)) + (-gamma / varW)))
+                phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
                 phi = Math.PI + phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)));
             }
         }
         if (prmVelIni < 0 && prmPosIni < 0) {
-            phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -varW)) + (-gamma / varW)))
+            phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
             phi = Math.PI - phi1;
             c = Math.abs(prmPosIni / (Math.cos(phi)));
         }
         if (prmPosIni >= 0 && prmVelIni < 0) {
             if (prmPosIni == 0) {
                 phi = Math.PI / 2
-                c = Math.abs(prmVelIni / (varW * Math.sin(phi)));
+                c = Math.abs(prmVelIni / (ommega * Math.sin(phi)));
             }
             else {
-                phi = Math.abs(Math.atan((prmVelIni / (prmPosIni * -varW)) + (-gamma / varW)))
+                phi = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
                 c = Math.abs(prmPosIni / (Math.cos(phi)));
             }
         }
@@ -173,11 +175,11 @@ console.log(c)
         frecuenciaNatural: varW?varW.toFixed(2):varW,
         frecuencia: varF?varF.toFixed(2):varF,
         gamma: gamma?gamma.toFixed(2):gamma,
-
+        ommega: ommega?ommega.toFixed(2):ommega
     }
 }
 export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB, prmF0, prmWf) {
-    const { c1, c2, c, frecuenciaNatural, frecuencia, m1, m2, phi, gamma, type } = amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB);
+    const { c1, c2, c, frecuenciaNatural, frecuencia, m1, m2, phi, gamma, type, ommega } = amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB);
     let amplitudMaxima, delta;
     const denominador= (Math.pow((Math.pow(frecuenciaNatural,2) - Math.pow(prmWf,2)),2)) + (Math.pow(2*gamma*prmWf),2)
     amplitudMaxima = (prmF0/prmMasa)/(Math.sqrt(denominador));
@@ -194,9 +196,11 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
         c: c,
         frecuenciaNatural,
         frecuencia,
+        ommega,
         gamma: gamma,
         amplitudMaxima:amplitudMaxima?amplitudMaxima.toFixed(2):amplitudMaxima ,
         delta:delta?delta.toFixed(2):delta,
+
     }
 }
 
