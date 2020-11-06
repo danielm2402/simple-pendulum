@@ -196,7 +196,7 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
         frecuencia,
         gamma: gamma,
         amplitudMaxima:amplitudMaxima?amplitudMaxima.toFixed(2):amplitudMaxima ,
-        delta:delta?delta.toFixes(2):delta,
+        delta:delta?delta.toFixed(2):delta,
     }
 }
 
