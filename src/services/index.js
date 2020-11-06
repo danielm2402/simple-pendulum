@@ -68,11 +68,11 @@ export function pendulum(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni) {
 
 
     return {
-        frecuenciaNatural: varW?varW.toFixed(2):varW,//rad/seg
-        periodo: varT?varT.toFixed(2):varT,//s
-        frecuencia: varF?varF.toFixed(2):varF,//hz
-        desfase: varPhi?varPhi.toFixed(2):varPhi,//rad
-        amplitud:varTheta0? degrees_to_radians(varTheta0).toFixed(2):varTheta0,//ang,
+        frecuenciaNatural: varW ? varW.toFixed(2) : varW,//rad/seg
+        periodo: varT ? varT.toFixed(2) : varT,//s
+        frecuencia: varF ? varF.toFixed(2) : varF,//hz
+        desfase: varPhi ? varPhi.toFixed(2) : varPhi,//rad
+        amplitud: varTheta0 ? degrees_to_radians(varTheta0).toFixed(2) : varTheta0,//ang,
         funcAmplitud: funcAmplitud
 
     }
@@ -97,7 +97,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
     const varF = varW / (2 * Math.PI);
     let type
     let c1, c2, m1, m2, phi, c, phi1, ommega
-    ommega= Math.sqrt(varW_2 - gamma_2)
+    ommega = Math.sqrt(varW_2 - gamma_2)
     if (varW_2 == gamma_2) {
         //CRITICAMENTE AMORTIGUADO
         c1 = prmPosIni;
@@ -123,7 +123,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
                 c = Math.abs(prmVelIni / (ommega * Math.sin(phi)))
             }
             if (prmVelIni == 0) {
-                phi1 = Math.abs(Math.atan(-gamma / varW))
+                phi1 = Math.abs(Math.atan(-gamma / ommega))
                 phi = 2 * Math.PI - phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)))
             }
@@ -162,45 +162,63 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
         }
     }
-console.log(phi)
-console.log(c)
     return {
         type: type,
-        c1: c1?c1.toFixed(2):c1, //constantes arbitrarias
-        c2: c2?c2.toFixed(2):c2, //constantes arbitrarias
-        m1: m1?m1.toFixed(2):m1,
-        m2: m2?m2.toFixed(2):m2,
-        phi: phi?phi.toFixed(2):phi,
-        c: c?c.toFixed(2):c,
-        frecuenciaNatural: varW?varW.toFixed(2):varW,
-        frecuencia: varF?varF.toFixed(2):varF,
-        gamma: gamma?gamma.toFixed(2):gamma,
-        ommega: ommega?ommega.toFixed(2):ommega
+        c1: c1 ? c1.toFixed(2) : c1, //constantes arbitrarias
+        c2: c2 ? c2.toFixed(2) : c2, //constantes arbitrarias
+        m1: m1 ? m1.toFixed(2) : m1,
+        m2: m2 ? m2.toFixed(2) : m2,
+        phi: phi ? phi.toFixed(2) : phi,
+        c: c ? c.toFixed(2) : c,
+        frecuenciaNatural: varW ? varW.toFixed(2) : varW,
+        frecuencia: varF ? varF.toFixed(2) : varF,
+        gamma: gamma ? gamma.toFixed(2) : gamma,
+        ommega: ommega ? ommega.toFixed(2) : ommega
     }
 }
 export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB, prmF0, prmWf) {
-    const { c1, c2, c, frecuenciaNatural, frecuencia, m1, m2, phi, gamma, type, ommega } = amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB);
     let amplitudMaxima, delta;
-    const denominador= (Math.pow((Math.pow(frecuenciaNatural,2) - Math.pow(prmWf,2)),2)) + (Math.pow(2*gamma*prmWf),2)
-    amplitudMaxima = (prmF0/prmMasa)/(Math.sqrt(denominador));
-    delta= Math.atan((2*gamma*prmWf)/(Math.pow(frecuenciaNatural,2) - Math.pow(prmWf,2)))
-   
+    if (prmB > 0) {
+        const { c1, c2, c, frecuenciaNatural, frecuencia, m1, m2, phi, gamma, type, ommega } = amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB);
+        const denominador = (Math.pow((Math.pow(frecuenciaNatural, 2) - Math.pow(prmWf, 2)), 2)) + (Math.pow(2 * gamma * prmWf), 2)
+        amplitudMaxima = (prmF0 / prmMasa) / (Math.sqrt(denominador));
+        delta = Math.atan((2 * gamma * prmWf) / (Math.pow(frecuenciaNatural, 2) - Math.pow(prmWf, 2)))
+        return {
+            type: type,
+            c1: c1, //constantes arbitrarias
+            c2: c2, //constantes arbitrarias
+            m1: m1,
+            m2: m2,
+            phi: phi,
+            c: c,
+            frecuenciaNatural,
+            frecuencia,
+            ommega,
+            gamma: gamma,
+            amplitudMaxima: amplitudMaxima ? amplitudMaxima.toFixed(2) : amplitudMaxima,
+            delta: delta ? delta.toFixed(2) : delta,
+            label:'amortiguado'
 
-    return{
-        type: type,
-        c1: c1, //constantes arbitrarias
-        c2: c2, //constantes arbitrarias
-        m1: m1,
-        m2: m2,
-        phi: phi,
-        c: c,
-        frecuenciaNatural,
-        frecuencia,
-        ommega,
-        gamma: gamma,
-        amplitudMaxima:amplitudMaxima?amplitudMaxima.toFixed(2):amplitudMaxima ,
-        delta:delta?delta.toFixed(2):delta,
+        }
+    } else {
+        const { frecuenciaNatural, periodo, frecuencia, desfase, amplitud, funcAmplitud } = pendulum(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni)
+        if (prmWf < frecuenciaNatural) {
+            const denominador = Math.pow(frecuenciaNatural, 2) - Math.pow(prmWf, 2)
+            amplitudMaxima = (prmF0 / prmMasa) / (denominador)
+            delta = 0
+        }
+        if (prmWf > frecuenciaNatural) {
+            const denominador = Math.pow(prmWf, 2) - (Math.pow(frecuenciaNatural, 2))
+            amplitudMaxima = (prmF0 / prmMasa) / (denominador)
+            delta = Math.PI
+        }
 
+        return{
+            frecuenciaNatural, periodo, frecuencia, desfase, amplitud, funcAmplitud,
+            amplitudMaxima: amplitudMaxima ? amplitudMaxima.toFixed(2) : amplitudMaxima,
+            delta: delta ? delta.toFixed(2) : delta,
+            label:'simple'
+        }
     }
 }
 

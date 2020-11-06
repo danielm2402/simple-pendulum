@@ -170,7 +170,7 @@ export default function Index(props) {
                         <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>Dividimos [2] entre [1] y despejamos para hallar Phi</h5>
                         <MathJax.Context input='ascii'>
                             <div>
-                                <MathJax.Node >{'frac{-W_o θ_0 Sen(\\varphi)}{θ_0 Cos(\\varphi)} =' + props.inputs.velInitial.data}</MathJax.Node>
+                                <MathJax.Node >{'frac{-W_o θ_0 Sen(\\varphi)}{θ_0 Cos(\\varphi)} =' +'frac{'+ props.inputs.velInitial.data+'}{'+props.inputs.posInitial.data+'}'}</MathJax.Node>
                             </div>
                         </MathJax.Context>
                         <MathJax.Context input='ascii'>
