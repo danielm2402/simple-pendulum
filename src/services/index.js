@@ -97,7 +97,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
     const varF = varW / (2 * Math.PI);
     let type
     let c1, c2, m1, m2, phi, c, phi1
-    if (varW_2 === gamma_2) {
+    if (varW_2 == gamma_2) {
         //CRITICAMENTE AMORTIGUADO
         c1 = prmPosIni;
         c2 = prmVelIni + (c1 * gamma)
@@ -115,12 +115,12 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
         //SUBAMORTIGUADO
         type = 'subamortiguado'
         if (prmPosIni >= 0 && prmVelIni >= 0) {
-            if (prmPosIni === 0) {
+            if (prmPosIni == 0) {
                 phi1 = Math.PI / 2;
                 phi = 2 * Math.PI - phi1;
                 c = Math.abs(prmVelIni / (varW * Math.sin(phi)))
             }
-            if (prmVelIni === 0) {
+            if (prmVelIni == 0) {
                 phi1 = Math.abs(Math.atan(-gamma / varW))
                 phi = 2 * Math.PI - phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)))
@@ -133,7 +133,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
 
         }
         if (prmVelIni < 0 && prmPosIni >= 0) {
-            if (prmVelIni === 0) {
+            if (prmVelIni == 0) {
                 phi1 = Math.abs(Math.atan(-gamma / varW))
                 phi = Math.PI + phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)))
@@ -150,7 +150,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             c = Math.abs(prmPosIni / (Math.cos(phi)));
         }
         if (prmPosIni >= 0 && prmVelIni < 0) {
-            if (prmPosIni === 0) {
+            if (prmPosIni == 0) {
                 phi = Math.PI / 2
                 c = Math.abs(prmVelIni / (varW * Math.sin(phi)));
             }
@@ -160,7 +160,8 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
         }
     }
-
+console.log(phi)
+console.log(c)
     return {
         type: type,
         c1: c1, //constantes arbitrarias

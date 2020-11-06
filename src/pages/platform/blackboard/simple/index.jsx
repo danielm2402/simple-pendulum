@@ -184,12 +184,20 @@ export default function Index(props) {
                             </div>
                         </MathJax.Context>
                         <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>Hallamos el valor de la amplitud</h5>
+                        {props.inputs.posInitial.data==0?
                         <MathJax.Context input='ascii'>
                             <div>
-                                <MathJax.Node >{`θ_0= frac{${props.inputs.posInitial.data}}{${props.response.funcAmplitud==='cos'?'Cos':'Sen'}(${ props.response.desfase})}`}</MathJax.Node>
+                                <MathJax.Node >{`θ_0= frac{${props.inputs.velInitial.data}}{${-props.response.frecuenciaNatural}*Sen(${props.response.desfase})}`}</MathJax.Node>
                                 <MathJax.Node >{`θ_0=${props.response.amplitud} rad`}</MathJax.Node>
                             </div>
-                        </MathJax.Context>
+                        </MathJax.Context>:
+                        <MathJax.Context input='ascii'>
+                        <div>
+                            <MathJax.Node >{`θ_0= frac{${props.inputs.posInitial.data}}{${props.response.funcAmplitud==='cos'?'Cos':'Sen'}(${ props.response.desfase})}`}</MathJax.Node>
+                            <MathJax.Node >{`θ_0=${props.response.amplitud} rad`}</MathJax.Node>
+                        </div>
+                    </MathJax.Context>
+                        }
                         <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>La ecuación que describe el movimiento del pendulo es:</h5>
                         <MathJax.Context input='ascii'>
                             <div>
