@@ -68,11 +68,11 @@ export function pendulum(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni) {
 
 
     return {
-        frecuenciaNatural: varW,//rad/seg
-        periodo: varT,//s
-        frecuencia: varF,//hz
-        desfase: varPhi,//rad
-        amplitud: degrees_to_radians(varTheta0),//ang,
+        frecuenciaNatural: varW?varW.toFixed(2):varW,//rad/seg
+        periodo: varT?varT.toFixed(2):varT,//s
+        frecuencia: varF?varF.toFixed(2):varF,//hz
+        desfase: varPhi?varPhi.toFixed(2):varPhi,//rad
+        amplitud:varTheta0? degrees_to_radians(varTheta0).toFixed(2):varTheta0,//ang,
         funcAmplitud: funcAmplitud
 
     }
@@ -164,15 +164,15 @@ console.log(phi)
 console.log(c)
     return {
         type: type,
-        c1: c1, //constantes arbitrarias
-        c2: c2, //constantes arbitrarias
-        m1: m1,
-        m2: m2,
-        phi: phi,
-        c: c,
-        frecuenciaNatural: varW,
-        frecuencia: varF,
-        gamma: gamma,
+        c1: c1?c1.toFixed(2):c1, //constantes arbitrarias
+        c2: c2?c2.toFixed(2):c2, //constantes arbitrarias
+        m1: m1?m1.toFixed(2):m1,
+        m2: m2?m2.toFixed(2):m2,
+        phi: phi?phi.toFixed(2):phi,
+        c: c?c.toFixed(2):c,
+        frecuenciaNatural: varW?varW.toFixed(2):varW,
+        frecuencia: varF?varF.toFixed(2):varF,
+        gamma: gamma?gamma.toFixed(2):gamma,
 
     }
 }
@@ -195,8 +195,8 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
         frecuenciaNatural,
         frecuencia,
         gamma: gamma,
-        amplitudMaxima,
-        delta,
+        amplitudMaxima:amplitudMaxima?amplitudMaxima.toFixed(2):amplitudMaxima ,
+        delta:delta?delta.toFixes(2):delta,
     }
 }
 
