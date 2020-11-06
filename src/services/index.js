@@ -166,16 +166,16 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
    
     return {
         type: type,
-        c1: c1 ? c1.toFixed(2) : c1, //constantes arbitrarias
-        c2: c2 ? c2.toFixed(2) : c2, //constantes arbitrarias
-        m1: m1 ? m1.toFixed(2) : m1,
-        m2: m2 ? m2.toFixed(2) : m2,
-        phi: phi ? phi.toFixed(2) : phi,
-        c: c ? c.toFixed(2) : c,
-        frecuenciaNatural: varW ? varW.toFixed(2) : varW,
-        frecuencia: varF ? varF.toFixed(2) : varF,
-        gamma: gamma ? gamma.toFixed(2) : gamma,
-        ommega: ommega ? ommega.toFixed(2) : ommega
+        c1: c1 , //constantes arbitrarias
+        c2: c2 , //constantes arbitrarias
+        m1: m1 ,
+        m2: m2,
+        phi: phi ,
+        c: c,
+        frecuenciaNatural: varW,
+        frecuencia:  varF,
+        gamma: gamma,
+        ommega:  ommega
     }
 }
 export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB, prmF0, prmWf) {
@@ -197,8 +197,8 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
             frecuencia,
             ommega,
             gamma: gamma,
-            amplitudMaxima: amplitudMaxima ? amplitudMaxima.toFixed(2) : amplitudMaxima,
-            delta: delta ? delta.toFixed(2) : delta,
+            amplitudMaxima: amplitudMaxima ,
+            delta: delta,
             label: 'amortiguado'
 
         }
@@ -217,8 +217,8 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
 
         return {
             frecuenciaNatural, periodo, frecuencia, desfase, amplitud, funcAmplitud,
-            amplitudMaxima: amplitudMaxima ? amplitudMaxima.toFixed(2) : amplitudMaxima,
-            delta: delta ? delta.toFixed(2) : delta,
+            amplitudMaxima: amplitudMaxima,
+            delta:  delta,
             label: 'simple'
         }
     }
