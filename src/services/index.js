@@ -135,7 +135,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
 
         }
         if (prmVelIni >= 0 && prmPosIni < 0) {
-            if (prmVelIni === 0) {
+            if (prmVelIni == 0) {
 
                 phi1 = Math.abs(Math.atan(-gamma / ommega))
                 phi = Math.PI + phi1;
