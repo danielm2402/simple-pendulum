@@ -4,6 +4,8 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    flex:1
 }
 .item-form{
     width: 90%;

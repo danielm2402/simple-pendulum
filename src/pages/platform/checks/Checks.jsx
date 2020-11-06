@@ -50,7 +50,7 @@ export default function Checks(props) {
                         label={<span className="check-title">Constante de amortiguamiento</span>}
                     />
                 </FormGroup>
-                :<>Hola</>}
+                :<></>}
             </div>
             <div>
                 <select onChange={(e)=>props.handleType(e.target.value)} value={props.type}>
