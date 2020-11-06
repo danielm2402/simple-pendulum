@@ -135,7 +135,8 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
 
         }
         if (prmVelIni < 0 && prmPosIni >= 0) {
-            if (prmVelIni == 0) {
+            if (prmVelIni === 0) {
+
                 phi1 = Math.abs(Math.atan(-gamma / ommega))
                 phi = Math.PI + phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)))
@@ -146,10 +147,15 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
                 c = Math.abs(prmPosIni / (Math.cos(phi)));
             }
         }
-        if (prmVelIni < 0 && prmPosIni < 0) {
-            phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
-            phi = Math.PI - phi1;
-            c = Math.abs(prmPosIni / (Math.cos(phi)));
+        if (prmVelIni <= 0 && prmPosIni < 0) {
+            if (prmVelIni == 0) {
+                phi = 0
+                c = Math.abs(prmPosIni / (Math.cos(phi)));
+            } else {
+                phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
+                phi = Math.PI - phi1;
+                c = Math.abs(prmPosIni / (Math.cos(phi)));
+            }
         }
         if (prmPosIni >= 0 && prmVelIni < 0) {
             if (prmPosIni == 0) {
@@ -162,6 +168,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
         }
     }
+   
     return {
         type: type,
         c1: c1 ? c1.toFixed(2) : c1, //constantes arbitrarias
@@ -197,7 +204,7 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
             gamma: gamma,
             amplitudMaxima: amplitudMaxima ? amplitudMaxima.toFixed(2) : amplitudMaxima,
             delta: delta ? delta.toFixed(2) : delta,
-            label:'amortiguado'
+            label: 'amortiguado'
 
         }
     } else {
@@ -213,11 +220,11 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
             delta = Math.PI
         }
 
-        return{
+        return {
             frecuenciaNatural, periodo, frecuencia, desfase, amplitud, funcAmplitud,
             amplitudMaxima: amplitudMaxima ? amplitudMaxima.toFixed(2) : amplitudMaxima,
             delta: delta ? delta.toFixed(2) : delta,
-            label:'simple'
+            label: 'simple'
         }
     }
 }
