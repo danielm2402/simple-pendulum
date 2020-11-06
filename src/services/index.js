@@ -134,7 +134,7 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
 
         }
-        if (prmVelIni < 0 && prmPosIni >= 0) {
+        if (prmVelIni >= 0 && prmPosIni < 0) {
             if (prmVelIni === 0) {
 
                 phi1 = Math.abs(Math.atan(-gamma / ommega))
@@ -147,15 +147,10 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
                 c = Math.abs(prmPosIni / (Math.cos(phi)));
             }
         }
-        if (prmVelIni <= 0 && prmPosIni < 0) {
-            if (prmVelIni == 0) {
-                phi = 0
-                c = Math.abs(prmPosIni / (Math.cos(phi)));
-            } else {
+        if (prmVelIni < 0 && prmPosIni < 0) {
                 phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
                 phi = Math.PI - phi1;
                 c = Math.abs(prmPosIni / (Math.cos(phi)));
-            }
         }
         if (prmPosIni >= 0 && prmVelIni < 0) {
             if (prmPosIni == 0) {
