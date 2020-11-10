@@ -148,9 +148,9 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
         }
         if (prmVelIni < 0 && prmPosIni < 0) {
-                phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
-                phi = Math.PI - phi1;
-                c = Math.abs(prmPosIni / (Math.cos(phi)));
+            phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
+            phi = Math.PI - phi1;
+            c = Math.abs(prmPosIni / (Math.cos(phi)));
         }
         if (prmPosIni >= 0 && prmVelIni < 0) {
             if (prmPosIni == 0) {
@@ -163,19 +163,19 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
         }
     }
-   
+
     return {
         type: type,
-        c1: c1 , //constantes arbitrarias
-        c2: c2 , //constantes arbitrarias
-        m1: m1 ,
+        c1: c1, //constantes arbitrarias
+        c2: c2, //constantes arbitrarias
+        m1: m1,
         m2: m2,
-        phi: phi ,
+        phi: phi,
         c: c,
         frecuenciaNatural: varW,
-        frecuencia:  varF,
+        frecuencia: varF,
         gamma: gamma,
-        ommega:  ommega
+        ommega: ommega
     }
 }
 export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB, prmF0, prmWf) {
@@ -197,7 +197,7 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
             frecuencia,
             ommega,
             gamma: gamma,
-            amplitudMaxima: amplitudMaxima ,
+            amplitudMaxima: amplitudMaxima,
             delta: delta,
             label: 'amortiguado'
 
@@ -218,14 +218,65 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
         return {
             frecuenciaNatural, periodo, frecuencia, desfase, amplitud, funcAmplitud,
             amplitudMaxima: amplitudMaxima,
-            delta:  delta,
+            delta: delta,
             label: 'simple'
         }
     }
 }
 
+export function acoplados(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmPosBlock, prmConstElastic) {
+   
+    const a = ((3 * prmConstElastic) / (2 * prmMasa)) + (prmGravedad / prmLongCuerda)
+    const b = Math.sqrt((Math.pow((5 * prmConstElastic), 2) / Math.pow(prmMasa, 2)) - ((2 * prmGravedad * prmConstElastic) / (prmLongCuerda * prmMasa)))
+
+    const W1_2 = a + ((1 / 2) * b)
+    const W1 = Math.sqrt(W1_2)
+
+    const W2_2 = a - ((1 / 2) * b)
+    const W2 = Math.sqrt(W2_2)
+
+    let a_2 = 0
+    let a_1 = 0
+    let type = ''
+    if (prmPosIni == prmPosBlock) {
+        //PRIMER MODO DE VIBRACIÓN
+        a_2 = 0
+        a_1 = degrees_to_radians(prmPosIni)
+        type = 'PRIMERO'
+    }
+    if (-prmPosBlock == prmPosIni) {
+        //SEGUNDO MODO DE VIBRACIÓN
+        type = 'SEGUNDO'
+        a_1 = 0;
+        a_2 = degrees_to_radians(prmPosBlock)
+    }
+    if (prmPosBlock > 0 && prmPosIni == 0) {
+        //MODO DE VIBRACIÓN COMBINADO
+        type = 'COMBINADO'
+        a_1 = degrees_to_radians(prmPosBlock / 2);
+        a_2 = degrees_to_radians(prmPosBlock / 2);
+
+    }
+     console.log('ACOPLADOS')
+    console.log(a_1)
+    console.log(a_2) 
+    console.log(W1)
+    console.log(W2) 
+    console.log(type) 
+    return {
+        W1: isNumber(W1)? W1:0, //Frecuencias
+        W2:isNumber(W2)? W2:0,  // Frecuencias
+        a_1: isNumber(a_1)? a_1:0, //amplitudes
+        a_2: isNumber(a_2)? a_2:0,//amplitudes
+        type
+    }
+}
 function degrees_to_radians(degrees) {
     var pi = Math.PI;
     return degrees * (pi / 180);
 }
 
+var isNumber = function isNumber(value) 
+{
+   return typeof value === 'number' && isFinite(value);
+}

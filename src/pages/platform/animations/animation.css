@@ -24,8 +24,57 @@
     -ms-perspective-origin: 50% 50%;
     -o-perspective-origin: 50% 50%;
     perspective-origin: 50% 50%;
+    display: flex;
 }
 
+.block{
+    width: 100px;
+    height: 100px;
+    background-color: #0a2b3d;
+}
+.spring-1{
+    width: calc(50% - 50px);
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+.spring-1 .bar{
+    width: 5px;
+    height: 100%;
+    background-color: rgb(78, 73, 73); 
+    border-radius: 10px; 
+}
+.spring-1 .bar-initial{
+    width: 5px;
+    height: 20px;
+    background-color: rgb(78, 73, 73); 
+    border-radius: 10px; 
+}
+.spring-2{
+    width: calc(50% - 50px);
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: spring 2s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
+   
+}
+.spring-2 .bar{
+    width: 5px;
+    height: 100%;
+    background-color: rgb(78, 73, 73); 
+    border-radius: 10px; 
+}
+.spring-2 .bar-initial{
+    width: 5px;
+    height: 20px;
+    background-color: rgb(78, 73, 73); 
+    border-radius: 10px; 
+}
 .section-ball {
     left: calc(50% - 50px);
     top: calc(40% - 50px);
@@ -189,4 +238,12 @@
     to {
         transform: rotate(-40deg);
     }
+}
+@keyframes spring {
+    /* from {
+        width: calc(50% - 50px);
+    }
+    to {
+        width: calc(200% - 50px);
+    } */
 }
