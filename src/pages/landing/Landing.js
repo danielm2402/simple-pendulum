@@ -7,7 +7,7 @@ export default function Landing() {
         <div className="page-landing-page">
             <div className="container-left-landing-page">
                 <div className="container-title">
-                    Welcome to your simple pendulum calculator
+                    Welcome to your Electromagnetic Waves calculator
                 </div>
                 <div className="container-resume">
                     Ea culpa Lorem nulla proident labore cupidatat commodo reprehenderit veniam.

@@ -148,9 +148,9 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
         }
         if (prmVelIni < 0 && prmPosIni < 0) {
-                phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
-                phi = Math.PI - phi1;
-                c = Math.abs(prmPosIni / (Math.cos(phi)));
+            phi1 = Math.abs(Math.atan((prmVelIni / (prmPosIni * -ommega)) + (-gamma / ommega)))
+            phi = Math.PI - phi1;
+            c = Math.abs(prmPosIni / (Math.cos(phi)));
         }
         if (prmPosIni >= 0 && prmVelIni < 0) {
             if (prmPosIni == 0) {
@@ -163,19 +163,19 @@ export function amortiguado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, pr
             }
         }
     }
-   
+
     return {
         type: type,
-        c1: c1 , //constantes arbitrarias
-        c2: c2 , //constantes arbitrarias
-        m1: m1 ,
+        c1: c1, //constantes arbitrarias
+        c2: c2, //constantes arbitrarias
+        m1: m1,
         m2: m2,
-        phi: phi ,
+        phi: phi,
         c: c,
         frecuenciaNatural: varW,
-        frecuencia:  varF,
+        frecuencia: varF,
         gamma: gamma,
-        ommega:  ommega
+        ommega: ommega
     }
 }
 export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMasa, prmB, prmF0, prmWf) {
@@ -197,7 +197,7 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
             frecuencia,
             ommega,
             gamma: gamma,
-            amplitudMaxima: amplitudMaxima ,
+            amplitudMaxima: amplitudMaxima,
             delta: delta,
             label: 'amortiguado'
 
@@ -218,9 +218,47 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
         return {
             frecuenciaNatural, periodo, frecuencia, desfase, amplitud, funcAmplitud,
             amplitudMaxima: amplitudMaxima,
-            delta:  delta,
+            delta: delta,
             label: 'simple'
         }
+    }
+}
+export function waves(parOmmega, parEMax, parBmax, parN) {
+    //CALCULAR K
+    const velocidadLuz = 3 * 10 ^ 8;
+    const k = parOmmega / velocidadLuz //Numero de onda
+    const longitudDeOnda = (2 * Math.PI) / k //Longitud de onda
+    let nodosCampoElectrico = []
+    let antiNodosCampoElectrico = []
+
+    let nodosCampoMagnetico=[]
+    let antinodosCampoMagnetico=[]
+
+    for (let index = 0; index < parN - 1; index++) {
+        const x_1 = index * (longitudDeOnda / 2)
+        const x_2 = (2*index + 1) * (longitudDeOnda / 4)
+        nodosCampoElectrico.push(x_1)
+        antiNodosCampoElectrico.push(x_2)
+    }
+
+    for (let index = 0; index < parN - 1; index++) {
+        const x_1 =(2*index + 1) * (longitudDeOnda / 4) 
+        const x_2 = index * (longitudDeOnda / 2)
+        nodosCampoMagnetico.push(x_1)
+        antinodosCampoMagnetico.push(x_2)
+    }
+
+    return {
+        k: k,
+        // ondaIncidenteEY: parEMax* Math.cos((k*x)+parOmmega*t) campo electrito
+        // ondaIncidenteBZ: parBmax* Math.cos((k*x)+parOmmega*t) campo magnetico
+
+        // ondaReflejadaEY: parEMax* Math.cos((k*x)-parOmmega*t) campo electrito
+        // ondaReflejadaBZ: parBmax* Math.cos((k*x)-parOmmega*t) campo magnetico
+
+        // ondaEstacionariaEY: -2*parEMax*sen(kx)*sen(parOmmega*t) campo electrico
+        // ondaEstacionariaBZ: -2*parBmax*cos(kx)*cos(parOmmega*t) campo magnetico
+
     }
 }
 

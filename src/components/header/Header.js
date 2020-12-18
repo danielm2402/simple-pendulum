@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <div className="container-header">
             <div className="container-logo">
-                __Simple Pendulum
+                __Electromagnetic Waves
             </div>
             <div className="container-navigation">
                 <a href="#/" onClick={() => document?.querySelector(`.page-platform`)
