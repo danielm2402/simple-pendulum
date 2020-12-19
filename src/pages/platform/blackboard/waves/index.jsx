@@ -64,7 +64,8 @@ export default function Index(props) {
                 data: [
                     {
                         fn: `${props.inputs.emax.data}*cos((${props.response.k ? props.response.k : 0}*x)-${props.inputs.ommega.data})`,
-                        color: 'red'
+                        color: 'red',
+                        
                     },
                     {
                         fn: `${props.inputs.emax.data}*cos((${props.response.k_2 ? props.response.k_2 : 0}*x)-${props.inputs.ommega.data})`,
@@ -72,6 +73,29 @@ export default function Index(props) {
                     },
                     {
                         fn: `${props.inputs.er.data}*cos((${props.response.k ? props.response.k : 0}*x)+${props.inputs.ommega.data})`,
+                        color: 'green'
+                    }
+                ],
+                disableZoom: false
+            });
+            functionPlot({
+                target: "#graph4",
+                width1,
+                height1,
+                xAxis: { domain: [-10, 10] },
+                grid: true,
+                data: [
+                    {
+                        fn: `${props.response.bi}*cos((${props.response.k ? props.response.k : 0}*x)-${props.inputs.ommega.data})`,
+                        color: 'red',
+                        
+                    },
+                    {
+                        fn: `${props.response.bt}*cos((${props.response.k_2 ? props.response.k_2 : 0}*x)-${props.inputs.ommega.data})`,
+                        color: 'blue'
+                    },
+                    {
+                        fn: `${props.response.br}*cos((${props.response.k ? props.response.k : 0}*x)+${props.inputs.ommega.data})`,
                         color: 'green'
                     }
                 ],
@@ -245,7 +269,8 @@ export default function Index(props) {
                     <div id="graph3">
                     </div>
 
-
+                    <div id="graph4">
+                    </div>
                 </div>
             </div>
 
