@@ -15,7 +15,7 @@ export default function Platform() {
     const [configInputs, setConfigInputs] = useState({ length: { name: 'length', data: 1, checked: true, label: 'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label: 'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 7, checked: true, label: 'Ángulo inicial' }, velInitial: { name: 'velInitial', data: 0, checked: true, label: 'Velocidad inicial' }, mass: { name: 'mass', data: 10, checked: true, label: 'Masa del objeto' } })
     const [configInputsAmortiguado, setConfigInputsAmortiguado] = useState({ length: { name: 'length', data: 1, checked: true, label: 'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label: 'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 7, checked: true, label: 'Ángulo inicial' }, velInitial: { name: 'velInitial', data: 0, checked: true, label: 'Velocidad inicial' }, mass: { name: 'mass', data: 10, checked: true, label: 'Masa del objeto' }, const: { name: 'const', data: 10, checked: true, label: 'Constante de amortiguamiento' } })
     const [configInputsForzado, setConfigInputsForzado] = useState({ length: { name: 'length', data: 1, checked: true, label: 'Longitud de la cuerda' }, gravity: { name: 'gravity', data: 9.8, checked: true, label: 'Valor de la gravedad' }, posInitial: { name: 'posInitial', data: 7, checked: true, label: 'Ángulo inicial' }, velInitial: { name: 'velInitial', data: 0, checked: true, label: 'Velocidad inicial' }, mass: { name: 'mass', data: 10, checked: true, label: 'Masa del objeto' }, const: { name: 'const', data: 10, checked: true, label: 'Constante de amortiguamiento' }, fuerzaInicial: { name: 'fuerzaInicial', data: 1, checked: true, label: 'Fuerza Inicial' }, frecuenciaFuerza: { name: 'frecuenciaFuerza', data: 1, checked: true, label: 'Frecuencia Fuerza' } })
-    const [configInputsWaves, setConfigInputsWaves] = useState({ mu: { name: 'mu', data: 0, checked: true, label: 'Mu' }, epsilon: { name: 'epsilon', data: 0, checked: true, label: 'Épsilon' }, emax: { name: 'emax', data: 0, checked: true, label: 'Emax' }, bmax: { name: 'bmax', data: 0, checked: true, label: 'Bmax' }, length: { name: 'length', data: 0, checked: true, label: 'Longitud' }, k: { name: 'k', data: 0, checked: true, label: 'K' },  ommega: { name: 'ommega', data: 0, checked: true, label: 'Ommega' }, n: { name: 'n', data: 0, checked: true, label: 'N Nodos' }  })
+    const [configInputsWaves, setConfigInputsWaves] = useState({ emax: { name: 'emax', data: 0, checked: true, label: 'Emax' }, er: { name: 'er', data: 0, checked: true, label: 'Er' }, length: { name: 'length', data: 0, checked: true, label: 'Longitud' },  ommega: { name: 'ommega', data: 0, checked: true, label: 'Ommega' },  n: { name: 'n', data: 0, checked: true, label: 'N' }, n1: { name: 'n1', data: 0, checked: true, label: 'n1' }, n2: { name: 'n2', data: 0, checked: true, label: 'n2' }  })
 
     const [response, setResponse] = useState({})
     const [responseAmortiguado, setResponseAmortiguado] = useState({})
@@ -46,8 +46,7 @@ export default function Platform() {
         setType(name)
     }
     useEffect(() => {
-
-        console.log(setResponseWaves(waves()))
+        setResponseWaves(waves(configInputsWaves.ommega.data, configInputsWaves.n.data, configInputsWaves.n1.data, configInputsWaves.n2.data,configInputsWaves.emax.data ,configInputsWaves.er.data))
 
     }, [configInputsWaves])
 

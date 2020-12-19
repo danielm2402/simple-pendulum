@@ -223,41 +223,58 @@ export function forzado(prmLongCuerda, prmGravedad, prmPosIni, prmVelIni, prmMas
         }
     }
 }
-export function waves(parOmmega, parEMax, parBmax, parN) {
+export function waves(parOmmega, parN, n1, n2, emax, er) {
     //CALCULAR K
-    const velocidadLuz = 3 * 10 ^ 8;
-    const k = parOmmega / velocidadLuz //Numero de onda
+    console.log(n1)
+    const v1 = 3 / n1 //coeficiente refraccion
+    const v2 = 3 / n2 //coeficiente refraccion
+    const k = parOmmega / v1 //Numero de onda medio 1
+    const k_2 = parOmmega / v2 //Numero de onda medio 2
+
+    const br= er/v1
+    const bi= emax/v1
+    const bt= emax/v2;
+    const coeficienteR = (v2 - v1) / (v2 + v1)
+    const coeficienteT = (2 * v2) / (v2 + v1)
+
+    console.log(br)
+    console.log(bi)
+    console.log(bt)
     const longitudDeOnda = (2 * Math.PI) / k //Longitud de onda
     let nodosCampoElectrico = []
     let antiNodosCampoElectrico = []
 
-    let nodosCampoMagnetico=[]
-    let antinodosCampoMagnetico=[]
+    let nodosCampoMagnetico = []
+    let antinodosCampoMagnetico = []
 
     for (let index = 0; index < parN - 1; index++) {
         const x_1 = index * (longitudDeOnda / 2)
-        const x_2 = (2*index + 1) * (longitudDeOnda / 4)
+        const x_2 = (2 * index + 1) * (longitudDeOnda / 4)
         nodosCampoElectrico.push(x_1)
         antiNodosCampoElectrico.push(x_2)
     }
 
     for (let index = 0; index < parN - 1; index++) {
-        const x_1 =(2*index + 1) * (longitudDeOnda / 4) 
+        const x_1 = (2 * index + 1) * (longitudDeOnda / 4)
         const x_2 = index * (longitudDeOnda / 2)
         nodosCampoMagnetico.push(x_1)
         antinodosCampoMagnetico.push(x_2)
     }
 
+
+
     return {
         k: k,
-        // ondaIncidenteEY: parEMax* Math.cos((k*x)+parOmmega*t) campo electrito
-        // ondaIncidenteBZ: parBmax* Math.cos((k*x)+parOmmega*t) campo magnetico
-
-        // ondaReflejadaEY: parEMax* Math.cos((k*x)-parOmmega*t) campo electrito
-        // ondaReflejadaBZ: parBmax* Math.cos((k*x)-parOmmega*t) campo magnetico
-
-        // ondaEstacionariaEY: -2*parEMax*sen(kx)*sen(parOmmega*t) campo electrico
-        // ondaEstacionariaBZ: -2*parBmax*cos(kx)*cos(parOmmega*t) campo magnetico
+        k_2: k_2,
+        br,
+        bi,
+        bt,
+        coeficienteR,
+        coeficienteT,
+        nodosCampoElectrico,
+        antiNodosCampoElectrico,
+        nodosCampoMagnetico,
+        antinodosCampoMagnetico
 
     }
 }

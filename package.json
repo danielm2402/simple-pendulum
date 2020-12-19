@@ -1,5 +1,5 @@
 {
-  "homepage":"https://danielm2402.github.io/simple-pendulum",
+  "homepage": "https://danielm2402.github.io/simple-pendulum",
   "name": "simple-pendulum",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "function-plot": "^1.22.2",
     "mathjax-react": "^1.0.6",
     "rc-tween-one": "^2.7.3",
     "react": "^16.13.1",

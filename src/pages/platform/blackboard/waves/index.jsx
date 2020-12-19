@@ -2,177 +2,253 @@ import React from 'react'
 import MathJax from 'react-mathjax2'
 
 import '../Blackboard.css'
+import functionPlot, { } from "function-plot";
 
-export default function index(props) {
+let contentsBounds = document.body.getBoundingClientRect();
+let width = 800;
+let height = 200;
+
+let width1 = 800;
+let height1 = 200;
+
+let ratio = contentsBounds.width / width;
+// ondaIncidenteEY: parEMax* Math.cos((k*x)+parOmmega*t) campo electrito
+// ondaIncidenteBZ: parBmax* Math.cos((k*x)+parOmmega*t) campo magnetico
+
+// ondaReflejadaEY: parEMax* Math.cos((k*x)-parOmmega*t) campo electrito
+// ondaReflejadaBZ: parBmax* Math.cos((k*x)-parOmmega*t) campo magnetico
+
+// ondaEstacionariaEY: -2*parE2Max*sen(kx)*sen(parOmmega*t) campo electrico
+// ondaEstacionariaBZ: -2*parBmax*cos(kx)*cos(parOmmega*t) campo magnetico
+export default function Index(props) {
+
+    React.useEffect(() => {
+        try {
+            functionPlot({
+                target: "#graph",
+                width,
+                height,
+                xAxis: { domain: [-10, 10] },
+                grid: false,
+                data: [
+                    {
+                        fn: `(-2*${props.inputs.emax.data})*sin(${props.response.k ? props.response.k : 0}*x)*sin(${props.inputs.ommega.data})`,
+                        color: 'red'
+                    }
+                ],
+                disableZoom: false
+            });
+
+
+            functionPlot({
+                target: "#graph2",
+                width,
+                height,
+                xAxis: { domain: [-10, 10] },
+                grid: false,
+                data: [
+                    {
+                        fn: `(-2*${props.inputs.emax.data})*sin(${props.response.k ? props.response.k : 0}*x)*sin(${props.inputs.ommega.data})`,
+                        color: 'blue'
+                    }
+                ],
+                disableZoom: false
+            });
+
+            functionPlot({
+                target: "#graph3",
+                width1,
+                height1,
+                xAxis: { domain: [-10, 10] },
+                grid: true,
+                data: [
+                    {
+                        fn: `${props.inputs.emax.data}*cos((${props.response.k ? props.response.k : 0}*x)-${props.inputs.ommega.data})`,
+                        color: 'red'
+                    },
+                    {
+                        fn: `${props.inputs.emax.data}*cos((${props.response.k_2 ? props.response.k_2 : 0}*x)-${props.inputs.ommega.data})`,
+                        color: 'blue'
+                    },
+                    {
+                        fn: `${props.inputs.er.data}*cos((${props.response.k ? props.response.k : 0}*x)+${props.inputs.ommega.data})`,
+                        color: 'green'
+                    }
+                ],
+                disableZoom: false
+            });
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }, [props.response])
     return (
-        <div className="container-solution" >
-        <div className="left-solution">
-            <div className="title">
-                <h4>Frecuencia natural de vibracion (Wo):</h4>
-            </div>
-            <div className="ecuation">
-                <MathJax.Context input='ascii'>
-                    <div>
-                        <MathJax.Node >{'W_o=sqrt (frac{g}{l})'}</MathJax.Node>
-                    </div>
-                </MathJax.Context>
-                <MathJax.Context input='ascii'>
-                    <div>
-{/*                         <MathJax.Node >{'W_o=sqrt (frac{' + props.inputs.gravity.data + '}{' + props.inputs.length.data + '})'}</MathJax.Node>
- */}                    </div>
-                </MathJax.Context>
-                <MathJax.Context input='ascii'>
-                    <div>
-{/*                         <MathJax.Node >{'W_o=' + props.response.frecuenciaNatural + 'frac{rad}{s}'}</MathJax.Node>
- */}                    </div>
-                </MathJax.Context>
-            </div>
-            <div className="title">
-                <h4>Frecuencia (f):</h4>
-            </div>
-            <div className="ecuation">
-                <MathJax.Context input='ascii'>
-                    <div>
-                        <MathJax.Node >{'f=frac{W_o}{2\\pi}'}</MathJax.Node>
-                    </div>
-                </MathJax.Context>
-                <MathJax.Context input='ascii'>
-                    <div>
-{/*                         <MathJax.Node >{'f=frac{' + props.response.frecuenciaNatural + '}{2\\pi}'}</MathJax.Node>
- */}                    </div>
-                </MathJax.Context>
-                <MathJax.Context input='ascii'>
-                    <div>
-{/*                         <MathJax.Node >{'f=' + props.response.frecuencia + 'hz'}</MathJax.Node>
- */}                    </div>
-                </MathJax.Context>
-            </div>
-            <div className="title">
-                <h4>Gamma:</h4>
-            </div>
-            <div className="ecuation">
-                <MathJax.Context input='ascii'>
-                    <div>
-                        <MathJax.Node >{'\gamma=frac{b}{2*m}'}</MathJax.Node>
-                    </div>
-                </MathJax.Context>
-                <MathJax.Context input='ascii'>
-                    <div>
-{/*                         <MathJax.Node >{`\gamma=frac{${props.inputs.const.data}}{2*${props.inputs.mass.data}}`}</MathJax.Node>
- */}                    </div>
-                </MathJax.Context>
-                <MathJax.Context input='ascii'>
-                    <div>
-{/*                         <MathJax.Node >{`\gamma=${props.response.gamma}`}</MathJax.Node>
- */}                    </div>
-                </MathJax.Context>
-            </div>
-
-        </div>
-        <div className="right-solution">
-            <div className="title">
-                <div className="title">
-                    <h4>Ecuación de movimiento:</h4>
-                </div>
-
-                <div className="ecuation">
-                    {props.response.type === 'subamortiguado' ?
-                        <div>
-                        <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>Comparando Gamma con Frecuencia natural, como:</h5>
+        <div style={{
+            width: '100%', height: '100%', overflowY: 'auto',
+        }}>
+            <div className="container-solution" >
+                <div style={{ paddingBottom: 20, display: 'flex' }}>
+                    <div className="left-solution">
+                        <div className="title">
+                            <h4>Onda incidente:</h4>
+                        </div>
                         <div className="ecuation">
                             <MathJax.Context input='ascii'>
                                 <div>
-                                    <MathJax.Node >{'\gamma^2 < W_0^2'}</MathJax.Node>
+                                    <MathJax.Node >{`Ey= Emax * Cos(k*x - w*t))`}</MathJax.Node>
                                 </div>
                             </MathJax.Context>
                             <MathJax.Context input='ascii'>
                                 <div>
-{/*                                     <MathJax.Node >{`${props.response.gamma}^2 < ${props.response.frecuenciaNatural}^2`}</MathJax.Node>
- */}                                </div>
+                                    <MathJax.Node >{`Ey= ${props.inputs.emax.data} * Cos(${props.response.k}*c*x - w*t))`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= Bmax * Cos((k*x)-w*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= ${props.response.bi} * Cos((${props.response.k}*c*x)-w*t)`}</MathJax.Node>
+                                </div>
                             </MathJax.Context>
                         </div>
-                        <h5 style={{ color: '#234f4f', textAlign: 'left', marginTop: 20 }}>Al ser gamma menor que la frecuencia natural</h5>
-                        <h5 style={{ color: '#234f4f', textAlign: 'left',  marginBottom: 20}}> es un sistema subamortiguado, por lo tanto su ecuación está dada por: </h5>
+                        <div className="title">
+                            <h4>Onda Reflejada</h4>
+                        </div>
                         <div className="ecuation">
                             <MathJax.Context input='ascii'>
                                 <div>
-                                    <MathJax.Node >{'θ(t)=c*e^(-\gamma*t)* Cos (W*t+\phi)'}</MathJax.Node>
+                                    <MathJax.Node >{`Ey= Emax * Cos(k*x +w*t))`}</MathJax.Node>
                                 </div>
                             </MathJax.Context>
                             <MathJax.Context input='ascii'>
                                 <div>
-{/*                                 <MathJax.Node >{`θ(t)=${props.response.c}*e^(-${props.response.gamma}*t)* Cos (${props.response.ommega}*t+${props.response.phi})`}</MathJax.Node>
- */}                                </div>
+                                    <MathJax.Node >{`Ey= ${props.inputs.emax.data} * Cos(${props.response.k}*c*x + w*t))`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= -Bmax * Cos((k*x)+w*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= -${props.response.br} * Cos((${props.response.k}*c*x)+w*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                        </div>
+
+                        <div className="title">
+                            <h4>Onda Transmitida</h4>
+                        </div>
+                        <div className="ecuation">
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Ey= Emax * Cos(k_2*x - w*t))`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Ey= ${props.inputs.emax.data} * Cos(${props.response.k_2}*x - w*t))`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= Bmax * Cos((k_2*x)-w*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= ${props.response.bt} * Cos((${props.response.k_2}*c*x)-w*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                        </div>
+
+                        <div className="title">
+                            <h4>Ondas estacionarias:</h4>
+                        </div>
+                        <div className="ecuation">
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Ey= -2*Emax*Sen(kx)*Sen(\Omega*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Ey= -2*${props.inputs.emax.data}*Sen(${props.response.k}*c*x)*Sen(\Omega*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= -2*Bmax*Cos(kx)*Cos(\Omega*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`Bz= -2*${props.response.bi}*Cos(${props.response.k}*c*x)*Cos(\Omega*t)`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                        </div>
+                    </div>
+                    <div className="right-solution">
+                        <div className="title">
+                            <h4>Coeficiente de reflexión</h4>
+                        </div>
+                        <div className="ecuation">
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`R= frac{v2 - v1}{v2 + v1}`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`R=${props.response.coeficienteR}`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+
+                        </div>
+
+                        <div className="title">
+                            <h4>Coeficiente de transmisión</h4>
+                        </div>
+                        <div className="ecuation">
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`T= frac{2*v2}{v2 + v1}`}</MathJax.Node>
+                                </div>
+                            </MathJax.Context>
+                            <MathJax.Context input='ascii'>
+                                <div>
+                                    <MathJax.Node >{`T=${props.response.coeficienteT}`}</MathJax.Node>
+                                </div>
                             </MathJax.Context>
 
                         </div>
                     </div>
-                        : props.response.type === 'amortiguado' ?
-                            <div>
-                                <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>Comparando Gamma con Frecuencia natural, como:</h5>
-                                <div className="ecuation">
-                                    <MathJax.Context input='ascii'>
-                                        <div>
-                                            <MathJax.Node >{'\gamma^2 = W_0^2'}</MathJax.Node>
-                                        </div>
-                                    </MathJax.Context>
-                                    <MathJax.Context input='ascii'>
-                                        <div>
-{/*                                             <MathJax.Node >{`${props.response.gamma}^2 = ${props.response.frecuenciaNatural}^2`}</MathJax.Node>
- */}                                        </div>
-                                    </MathJax.Context>
-                                </div>
-                                <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>Al ser iguales, es un sistema criticamente amortiguado, por lo tanto su ecuación está dada por: </h5>
-                                <div className="ecuation">
-                                    <MathJax.Context input='ascii'>
-                                        <div>
-                                            <MathJax.Node >{'θ(t)=(c1+c2*t)e^(-\gamma*t)'}</MathJax.Node>
-                                        </div>
-                                    </MathJax.Context>
-                                    <MathJax.Context input='ascii'>
-                                        <div>
-{/*                                             <MathJax.Node >{`θ(t)=(${props.response.c1}+${props.response.c2}*t)e^(-${props.response.gamma}*t)`}</MathJax.Node>
- */}                                        </div>
-                                    </MathJax.Context>
 
-                                </div>
-                            </div>
-                            :
-                            <div>
-                            <h5 style={{ color: '#234f4f', textAlign: 'left', marginBottom: 20 }}>Comparando Gamma con Frecuencia natural, como:</h5>
-                            <div className="ecuation">
-                                <MathJax.Context input='ascii'>
-                                    <div>
-                                        <MathJax.Node >{'\gamma^2 > W_0^2'}</MathJax.Node>
-                                    </div>
-                                </MathJax.Context>
-                                <MathJax.Context input='ascii'>
-                                    <div>
-                                        <MathJax.Node >{`${props.response.gamma}^2 > ${props.response.frecuenciaNatural}^2`}</MathJax.Node>
-                                    </div>
-                                </MathJax.Context>
-                            </div>
-                            <h5 style={{ color: '#234f4f', textAlign: 'left', marginTop: 20 }}>Al ser gamma mayor que la frecuencia natural</h5>
-                            <h5 style={{ color: '#234f4f', textAlign: 'left',  marginBottom: 20}}> es un sistema sobreamortiguado, por lo tanto su ecuación está dada por: </h5>
-                            <div className="ecuation">
-                                <MathJax.Context input='ascii'>
-                                    <div>
-                                        <MathJax.Node >{'θ(t)=c_1*e^(m_1*t)+ c_2*e^(m_2*t)'}</MathJax.Node>
-                                    </div>
-                                </MathJax.Context>
-                                <MathJax.Context input='ascii'>
-                                    <div>
-                                    <MathJax.Node >{`θ(t)=${props.response.c1}*e^(${props.response.m1}*t)+ ${props.response.c2}*e^(${props.response.m2}*t)`}</MathJax.Node>
-                                    </div>
-                                </MathJax.Context>
+                </div>
+                <h5>Grafica Ondas estacionarias</h5>
+                <div style={{ paddingTop: 120, position: 'relative', display: 'flex', flexDirection: 'column' }}>
+                    <div id="graph">
+                    </div>
+                    <div id="graph2">
+                    </div>
 
-                            </div>
-                        </div>}
+                </div>
+
+                <h5>Grafica Ondas reflejada e incidente</h5>
+                <div style={{ paddingTop: 120, display: 'flex', flexDirection: 'column' }}>
+                    <div id="graph3">
+                    </div>
+
+
                 </div>
             </div>
+
         </div>
-
-
-    </div>
     )
 }

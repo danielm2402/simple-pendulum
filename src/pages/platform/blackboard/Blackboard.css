@@ -4,6 +4,7 @@
     background: url(https://images.creativemarket.com/0.1.0/ps/8034524/300/200/m2/fpc/wm0/vccqltmjbp24stdhk3pftpqhf3d4ok8sy9tiaen3mca8oqvuoj4cbuwtuqa1026w-.jpg?1585512940&s=bf209619031b2f991787df522ff68b3d);
     display: flex;
     overflow-y: auto;
+    flex-direction: column;
 }
 
 .left-solution {
@@ -81,3 +82,36 @@
     }
 }
 
+#graph{
+    width: 800px;
+    height: 200px;
+    position: relative;
+   /*  border: 1px solid #162727; */
+    transform:  skewY(20deg);
+    
+ }
+#graph2{
+    width: 800px;
+    height: 200px;
+    position: relative;
+    transform:translate(0px,80px) rotateZ(20deg) ;
+    position: absolute;
+   /*  border: 1px solid red; */
+ }
+
+ #electrico{
+    width: 800px;
+    height: 200px;
+    border: 5px solid #162727;
+    position: absolute;
+    transform:  skewY(20deg);
+ }
+ #magnetico{
+    width: 800px;
+    height: 200px;
+    border: 5px solid red;
+    transform:translate(0px,100px) rotateZ(-90deg) skewY(20deg);
+    position: absolute;
+   
+
+ }
