@@ -24,5 +24,15 @@ Run project:
 ![IMG4](./src/assets/main3.png)
 ![IMG5](./src/assets/main4.png)
 
-Sorry for not making the project responsive, time is short.
+
+
+## Dedicatoria
+
+_"Vivir en los corazones que dejamos atrás no es morir."_ _thomas campbell_
+
+Este proyecto fue realizado para una de las materias más complicadas que he llevado al estudiar Ingeniería de Sistemas, y no lo hice solo, estuve acompañado de una gran persona... Tatiana Marcela Toquica, quien hoy, por cuestiones del destino, no está con nosotros. Recuerdo que siempre, al salir de clases, mencionaba que ganó esta materia gracias a este proyecto, y que como fui el desarrollador principal, fue gracias a mi. Yo solo me disponía a reír y a decirle que era trabajo en equipo. Hoy, días después de una triste despedida, y de lo que fue uno de los momentos más tristes de mi carrera y mi vida. Vengo a sellar esta despedida con esta pequeña dedicatoria... y debo decir que la historia fue al revés... Si yo pasé esta dificil materia fue gracias a ella, quien fue capaz de entender cada una de las formulas que hacen posibles funcionar este proyecto, era capaz de entender aquellas clases que para mi eran bastante tortuosas y abstraer todo lo necesario como si de un simple juego se tratara. Sin duda alguna no solo yo perdí una gran compañera y amiga, el mundo perdió una gran profesional y una persona excepcional. 
+
+_A honor de Tatiana Marcela Toquica Perdomo_
+
+
 
